@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="800px"
+   width="800px"
+   version="1.1"
+   id="_x32_"
+   viewBox="0 0 512 512"
+   xml:space="preserve"
+   sodipodi:docname="menu.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"><metadata
+   id="metadata13"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+   id="defs11" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="3840"
+   inkscape:window-height="2086"
+   id="namedview9"
+   showgrid="false"
+   inkscape:zoom="0.834386"
+   inkscape:cx="-394.96973"
+   inkscape:cy="480.07123"
+   inkscape:window-x="3840"
+   inkscape:window-y="0"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="_x32_" />
+<style
+   type="text/css"
+   id="style2">
+	.st0{fill:#000000;}
+</style>
+<path
+   style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:12.80000019;stroke-linecap:butt;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   d="M 108.91842,111.60977 H 410.36166 V 405.38269 H 108.91842 Z"
+   id="rect814" /><g
+   id="g6"
+   style="fill:#488dff;fill-opacity:1">
+	<path
+   class="st0"
+   d="M256,0C114.617,0,0,114.61,0,256c0,141.375,114.617,256,256,256c141.382,0,256-114.625,256-256   C512,114.61,397.382,0,256,0z M197.172,373.641h-58.821v-58.812h58.821V373.641z M197.172,285.406h-58.821v-58.828h58.821V285.406z    M197.172,197.172h-58.821V138.36h58.821V197.172z M285.406,373.641h-58.813v-58.812h58.813V373.641z M285.406,285.406h-58.813   v-58.828h58.813V285.406z M285.406,197.172h-58.813V138.36h58.813V197.172z M373.641,373.641h-58.813v-58.812h58.813V373.641z    M373.641,285.406h-58.813v-58.828h58.813V285.406z M373.641,197.172h-58.813V138.36h58.813V197.172z"
+   id="path4"
+   style="fill:#488dff;fill-opacity:1" />
+</g>
+</svg>
