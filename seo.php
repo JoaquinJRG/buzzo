@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-    <title>Buzzo - Empresas</title>
+    <title>Buzzo - SEO</title>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link href='css/estinicio.css?v=5.76' rel='stylesheet' type='text/css'>
@@ -20,6 +20,7 @@
     <script src='scripts/jquery-3.6.4.min.js' type='text/javascript'></script>
     <script src='scripts/jquery-ui.min.js' type='text/javascript'></script>
     <script src='scripts/iniciob.js' type='text/javascript'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.min.js"></script>
 </head>
 
 <body onLoad='if (self != top) top.location = self.location'>
@@ -144,7 +145,7 @@
                     <thead>
                         <tr>
                             <th>URL</th>
-                            <th>Tráfico</th>
+                            <th>Palabras clave comunes</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -153,7 +154,7 @@
                     <tfoot>
                         <tr>
                             <td></td>
-                            <td>Total: <span id="listadocompetenciaselec"></span> / <span id="listadocompetenciatotal"></span></td>
+                            <td>Total: <span id="listadocompetenciaselec"></span></td>
                         </tr>
                     </tfoot>
                 </table>

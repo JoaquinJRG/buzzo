@@ -55,41 +55,71 @@ abstract class ApiSeranking
 class Competencia extends ApiSeranking
 {
 
-    protected function extraerDatosCompletencia(array $datos)
+    protected function extraerDatosCompetencia(array $datos): array
     {
-        
+        return [
+            "domain" => $datos['domain'] ?? '',
+            "keywords" => $datos['common_keywords'] ?? 0,
+        ];
     }
 
-    protected function obtenerFilaTabla(array $datos)
+    public function obtenerCompetencia(): array
     {
-
-    }
-
-    public function obtenerCompetencia()
-    {
-    
         $competencia = $this->request("GET", "domain/competitors?source=es&domain={$this->domain}&limit=10&type=organic&stats=1");
-    
-        return $competencia;
+        $competidores = $competencia['competitors'] ?? $competencia;
+
+        if (!is_array($competidores)) {
+            return [];
+        }
+
+        return array_map(
+            fn(array $competidor): array => $this->extraerDatosCompetencia($competidor),
+            $competidores
+        );
     }
 }
+
+class MejorPosicion extends ApiSeranking
+{
+    protected function extraerDatosMejorPosicion(array $datos): array
+    {
+        return [
+
+        ];
+    }
+}
+
+class VolumenBusqueda extends ApiSeranking
+{
+    protected function extraerDatosVolumenBusqueda(array $datos): array
+    {
+        return [
+
+        ];
+    }
+}
+
+class MasTrafico extends ApiSeranking
+{
+    protected function extraerDatosMasTrafico(array $datos): array
+    {
+        return [
+            "domain" => $datos['domain'] ?? '',
+            "traffic" => $datos['traffic'] ?? 0,
+        ];
+    }
+
+}
+
 
 $competencia = new Competencia(
     "f8f1935c-2ff4-84a6-471a-af8f241f8e8c",
     "https://grabadosel13.com"
 );
 
-foreach ($competencia->obtenerCompetencia() as $competidor) {
-    echo "Dominio: " . $competidor['domain'] . "<br>";
-    echo "KW comunes: " . $competidor['common_keywords'] . "<br>";
-    echo "<hr>";
-}
-
-$competidores = $competencia->obtenerCompetencia();
-
-foreach (array_slice($competidores, 0, 10) as $competidor) {
-    echo "Dominio: " . $competidor['domain'] . "<br>";
-    echo "KW comunes: " . $competidor['common_keywords'] . "<br>";
-    echo "<hr>";
-}
+header('Content-Type: application/json; charset=utf-8');
+echo json_encode([
+    'success' => true,
+    'data' => $competencia->obtenerCompetencia(),
+], JSON_UNESCAPED_UNICODE);
 
