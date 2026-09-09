@@ -207,11 +207,11 @@ function pintarGraficosSeo(response) {
         {
             type: 'bar',
             data: {
-                labels: response.masTrafico ? response.masTrafico.map(item => item.keyword) : [],
+                labels: response.keyTrafico ? response.keyTrafico.map(item => item.keyword) : [],
                 datasets: [
                     {
                         label: 'Top Keywords por Tráfico',
-                        data: response.masTrafico ? response.masTrafico.map(item => item.traffic) : [],
+                        data: response.keyTrafico ? response.keyTrafico.map(item => item.traffic) : [],
                     }
                 ]
             },

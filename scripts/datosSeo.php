@@ -258,6 +258,64 @@ class MasTrafico extends ApiSeranking
 
 }
 
+class KeyTrafico extends ApiSeranking 
+{
+    protected function extraerDatosKeyTrafico(array $datos): array
+    {
+        return [
+            "keyword" => $datos['keyword'] ?? '',
+            "position" => $datos['position'] ?? 0,
+            "volume" => $datos['volume'] ?? 0,
+            "traffic" => $datos['traffic'] ?? 0,
+            "url" => $datos['url'] ?? '',
+        ];
+    }
+
+    public function getEndpoint(int $limit = 10): string
+    {
+        return "domain/keywords?source=es&domain={$this->domain}&limit={$limit}&type=organic&order_field=traffic&cols=keyword,position,volume,traffic,url,cpc";
+    }
+
+    public function procesarDatos(array $datos, int $limit = 10): array
+    {
+        $keywords = $datos['keywords'] ?? $datos;
+
+        if (!is_array($keywords)) {
+            return [];
+        }
+
+        $resultado = array_map(
+            fn(array $item): array => $this->extraerDatosKeyTrafico($item),
+            $keywords
+        );
+
+        return array_slice($resultado, 0, $limit);
+    }
+
+    public function obtenerKeyTrafico(int $limit = 10): array
+    {
+        $res = $this->request("GET", $this->getEndpoint($limit));
+        return $this->procesarDatos(is_array($res) ? $res : [], $limit);
+    }
+}
+
+class Organico extends ApiSeranking
+{
+
+
+
+    public function getEndpoint(int $limit = 10): string
+    {
+        return "domain/overview/db?source=es&domain={$this->domain}&limit={$limit}&with_subdomains=true";
+    }
+
+    public function obtenerOrganico(int $limit = 10): array
+    {
+        $res = $this->request("GET", $this->getEndpoint($limit));
+        return is_array($res) ? $res : [];
+    }
+}
+
 
 try {
     $apiKey = "f8f1935c-2ff4-84a6-471a-af8f241f8e8c";
@@ -267,11 +325,15 @@ try {
     $masTrafico = new MasTrafico($apiKey, $domain);
     $volumenBusqueda = new VolumenBusqueda($apiKey, $domain);
     $mejorPosicion = new MejorPosicion($apiKey, $domain);
+    $keyTrafico = new KeyTrafico($apiKey, $domain);
+    $organico = new Organico($apiKey, $domain);
 
     $datosCompetencia = $competencia->obtenerCompetencia(10);
     $datosMasTrafico = $masTrafico->obtenerMasTrafico(10);
     $datosVolumenBusqueda = $volumenBusqueda->obtenerVolumenBusqueda(10);
     $datosMejorPosicion = $mejorPosicion->obtenerMejorPosicion(10);
+    $datosKeyTrafico = $keyTrafico->obtenerKeyTrafico(10);
+    $datosOrganico = $organico->obtenerOrganico(10);
 
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode([
@@ -280,11 +342,15 @@ try {
         'masTrafico' => $datosMasTrafico,
         'volumenBusqueda' => $datosVolumenBusqueda,
         'mejorPosicion' => $datosMejorPosicion,
+        'keyTrafico' => $datosKeyTrafico,
+        'organico' => $datosOrganico,
         'data' => [
             'competencia' => $datosCompetencia,
             'masTrafico' => $datosMasTrafico,
             'volumenBusqueda' => $datosVolumenBusqueda,
             'mejorPosicion' => $datosMejorPosicion,
+            'keyTrafico' => $datosKeyTrafico,
+            'organico' => $datosOrganico,
         ],
     ], JSON_UNESCAPED_UNICODE);
 } catch (Exception $e) {
