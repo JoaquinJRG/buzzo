@@ -40,6 +40,7 @@
                             <span class="servicioconteb">Estado: Finalizado - Caducidad: XXXX-XX-XX</span>
                             <span class="servicioconteopciones">
                                 <span class="servicioconteopcion"><img title="Estadisticas" alt="Estadisticas" onclick="seopalabras();" border="0" src="imagen/estadisticas.png"></span>
+                                <span class="servicioconteopcion"><img title="Historico" alt="Historico" onclick="seohistorico();" border="0" src="imagen/historico.png"></span>
                             </span>
                         </span>
                     </li>
@@ -68,7 +69,7 @@
                 <div class="tituloempresa">Empresa de Prueba</div>
                 <div class="tituloempresa">
                     <h4>Top 10 keywords por volumen</h4>
-                    <canvas class="" id="graficoVolumenBusqueda" ></canvas>
+                    <canvas class="" id="graficoVolumenBusqueda"></canvas>
                 </div>
                 <div class="tituloempresa">
                     <h4>Distribución del ranking orgánico</h4>
@@ -170,7 +171,25 @@
         </div>
     </div>
     </div>
-
+    <div id="fconte_1_2" class="fondoconte" style="display:none;">
+        <div class="barra">
+            <div class="barraconte">
+                <div class="cerrar">
+                    <img id="cerrar_1_2" src="imagen/cerrar.svg" border="0">
+                </div>
+            </div>
+        </div>
+        <div class="contenidos">
+            <div class="cabecera">
+                <img src="imagen/buzzo.svg"><br>
+                <span>Técnico Cubetic Consultores</span>
+            </div>
+            <div class="titulo">
+                <span>Histórico</span>
+                <span class="subtitulo">SEO</span>
+            </div>
+        </div>
+    </div>
     <div id='menu'>
         <ul>
             <li>

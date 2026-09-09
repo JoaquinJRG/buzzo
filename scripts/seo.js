@@ -4,6 +4,12 @@ $('#cerrar_1_1').click(function () {
     $('#fconte_1_1').fadeOut();
 });
 
+$('#cerrar_1_2').click(function () {
+    $('#fconte_1').fadeIn();
+    $('#fconte_1_2').fadeOut();
+});
+
+
 // Caché en JavaScript para datos SEO
 const cacheSeoPalabras = {};
 
@@ -27,7 +33,7 @@ function obtenerCacheSeo(domain) {
 function guardarCacheSeo(domain, data) {
     cacheSeoPalabras[domain] = data;
     try {
-        sessionStorage.setItem('seo_cache_' + domain, JSON.stringify(data));
+        
     } catch (e) {
         // Ignorar si el almacenamiento está restringido
     }
@@ -299,5 +305,8 @@ function seopalabras(domain = 'https://grabadosel13.com') {
     });
 }
 
-
+function seohistorico() {
+    $("#fconte_1").hide();
+    $("#fconte_1_2").show();
+}
 
