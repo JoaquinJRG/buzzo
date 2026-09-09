@@ -20,7 +20,6 @@
     <script src='scripts/jquery-3.6.4.min.js' type='text/javascript'></script>
     <script src='scripts/jquery-ui.min.js' type='text/javascript'></script>
     <script src='scripts/iniciob.js' type='text/javascript'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.min.js"></script>
 </head>
 
 <body onLoad='if (self != top) top.location = self.location'>
@@ -67,14 +66,22 @@
             </div>
             <div id="fconte_1_1_contenido">
                 <div class="tituloempresa">Empresa de Prueba</div>
-                <div class="tituloempresa">Top 10 keywords por volumen</div>
-                <canvas id="grafico1"></canvas>
-                <div class="tituloempresa">Distribución del ranking orgánico</div>
-                <canvas id="grafico2"></canvas>
-                <div class="tituloempresa">Top keywords por tráfico</div>
-                <canvas id="grafico3"></canvas>
-                <div class="tituloempresa">Competencia (KW comunes)</div>
-                <canvas id="grafico4"></canvas>
+                <div class="tituloempresa">
+                    <h4>Top 10 keywords por volumen</h4>
+                    <canvas class="" id="graficoVolumenBusqueda" ></canvas>
+                </div>
+                <div class="tituloempresa">
+                    <h4>Distribución del ranking orgánico</h4>
+                    <canvas id="graficoOrganico"></canvas>
+                </div>
+                <div class="tituloempresa">
+                    <h4>Top keywords por tráfico</h4>
+                    <canvas id="graficoTrafico"></canvas>
+                </div>
+                <div class="tituloempresa">
+                    <h4>Competencia (KW comunes)</h4>
+                    <canvas id="graficoCompetencia"></canvas>
+                </div>
 
                 <div class="tituloempresa">Top 10 por volumen de búsqueda</div>
                 <table class="gridtable" id="listadovolumenbusqueda">
@@ -253,6 +260,7 @@
             <div>Procesando....</div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
     <script src='scripts/seo.js' type='text/javascript'></script>
     <script src='scripts/final.js' type='text/javascript'></script>
 </body>

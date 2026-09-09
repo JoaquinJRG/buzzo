@@ -146,6 +146,105 @@ function pintarTablasSeo(response) {
     }
 }
 
+function pintarGraficosSeo(response) {
+
+    console.log(response);
+    Chart.defaults.color = '#000';
+    Chart.defaults.backgroundColor = 'rgba(10,141,255,1)';
+    Chart.defaults.font.size = 10;
+    Chart.defaults.plugins.legend.position = 'bottom';
+
+    
+    // Top 10 por volumen de búsqueda
+    const graficoVolumen = $('#graficoVolumenBusqueda');
+
+    new Chart(
+        graficoVolumen,
+        {
+            type: 'bar',
+            data: {
+                labels: response.volumenBusqueda ? response.volumenBusqueda.map(item => item.keyword) : [],
+                datasets: [
+                    {
+                        label: 'Volumen de Búsqueda',
+                        data: response.volumenBusqueda ? response.volumenBusqueda.map(item => item.volume) : [],
+                    }
+                ]
+            },
+            options: {
+                indexAxis: "y"
+            }
+        }
+    );
+
+    // Distribución del ranking orgánico
+    const graficoDistribucion = $('#graficoOrganico');
+
+    new Chart(
+        graficoDistribucion,
+        {
+            type: 'bar',
+            data: {
+                labels: response.mejorPosicion ? response.mejorPosicion.map(item => item.position) : [],
+                datasets: [
+                    {
+                        label: 'Distribución del Ranking Orgánico',
+                        data: response.mejorPosicion ? response.mejorPosicion.map(item => item.count) : [],
+                    }
+                ]
+            },
+            options: {
+                indexAxis: "x"
+            }
+        }
+    );
+
+    // Top keywords por tráfico
+    const graficoTrafico = $('#graficoTrafico');
+
+    new Chart(
+        graficoTrafico,
+        {
+            type: 'bar',
+            data: {
+                labels: response.masTrafico ? response.masTrafico.map(item => item.keyword) : [],
+                datasets: [
+                    {
+                        label: 'Top Keywords por Tráfico',
+                        data: response.masTrafico ? response.masTrafico.map(item => item.traffic) : [],
+                    }
+                ]
+            },
+            options: {
+                indexAxis: "y"
+            }
+        }
+    );
+
+    // Competencia (KW comunes)
+    const graficoCompetencia = $('#graficoCompetencia');
+
+    new Chart(
+        graficoCompetencia,
+        {
+            type: 'bar',
+            data: {
+                labels: response.competencia ? response.competencia.map(item => item.domain) : [],
+                datasets: [
+                    {
+                        label: 'Competencia (KW comunes)',
+                        data: response.competencia ? response.competencia.map(item => item.keywords) : [],
+                    }
+                ]
+            },
+            options: {
+                indexAxis: "x"
+            }
+        }
+    );
+
+}
+
 function seopalabras(domain = 'https://grabadosel13.com') {
     // 1. Comprobar si ya existen datos guardados en caché para este dominio
     const datosEnCache = obtenerCacheSeo(domain);
@@ -154,6 +253,7 @@ function seopalabras(domain = 'https://grabadosel13.com') {
         $("#fconte_1").hide();
         $("#fconte_1_1").show();
         pintarTablasSeo(datosEnCache);
+        pintarGraficosSeo(datosEnCache);
         return;
     }
 
@@ -175,6 +275,7 @@ function seopalabras(domain = 'https://grabadosel13.com') {
                     guardarCacheSeo(domain, response);
                 }
                 pintarTablasSeo(response);
+                pintarGraficosSeo(response);
             },
             error: function (xhr, status, error) {
                 console.error('Error en la solicitud:', error);
@@ -197,5 +298,6 @@ function seopalabras(domain = 'https://grabadosel13.com') {
         });
     });
 }
+
 
 
