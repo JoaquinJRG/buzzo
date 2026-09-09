@@ -98,7 +98,6 @@
                             <th>Posición</th>
                             <th>Vol.</th>
                             <th>Tráfico est.</th>
-                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,8 +108,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td>Total: <span id="listadomejorposicionselec"></span> / <span id="listadomejorposicionrtotal"></span></td>
+                            <td>Total: <span id="listadovolumenbusquedaselec"></span> / <span id="listadovolumenbusquedartotal"></span></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -123,7 +121,6 @@
                             <th>Posición</th>
                             <th>Vol.</th>
                             <th>Tráfico est.</th>
-                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -131,7 +128,6 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
