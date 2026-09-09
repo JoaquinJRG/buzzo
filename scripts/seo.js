@@ -4,20 +4,6 @@ $('#cerrar_1_1').click(function () {
     $('#fconte_1_1').fadeOut();
 });
 
-$('#cerrar_1_2').click(function () {
-    $('#fconte_1').fadeIn();
-    $('#fconte_1_2').fadeOut();
-});
-
-function seoestadisticas() {
-    $("#cargando").fadeIn("500", function () {
-        $("#fconte_1").hide();
-        $("#fconte_1_1").show();
-        $("#cargando").fadeOut("500");
-
-    });
-}
-
 // Caché en JavaScript para datos SEO
 const cacheSeoPalabras = {};
 
@@ -166,7 +152,7 @@ function seopalabras(domain = 'https://grabadosel13.com') {
     if (datosEnCache) {
         console.log('SEO: Cargando datos desde caché para:', domain);
         $("#fconte_1").hide();
-        $("#fconte_1_2").show();
+        $("#fconte_1_1").show();
         pintarTablasSeo(datosEnCache);
         return;
     }
@@ -174,10 +160,10 @@ function seopalabras(domain = 'https://grabadosel13.com') {
     // 2. Si no hay nada en caché, solicitar a la API
     $("#cargando").fadeIn("500", function () {
         $("#fconte_1").hide();
-        $("#fconte_1_2").show();
+        $("#fconte_1_1").show();
 
         $.ajax({
-            url: 'scripts/palabrasSeo.php',
+            url: 'scripts/datosSeo.php',
             method: 'GET',
             data: {
                 domain: domain
