@@ -40,8 +40,8 @@
                             <span class="serviciocontea">Empresa de Prueba</span>
                             <span class="servicioconteb">Estado: Finalizado - Caducidad: XXXX-XX-XX</span>
                             <span class="servicioconteopciones">
-                                <span class="servicioconteopcion"><img title="Estadisticas" alt="Estadisticas" onclick="seoestadisticas(3147);" border="0" src="imagen/estadisticas.png"></span>
-                                <span class="servicioconteopcion"><img title="Palabras Clave" alt="Palabras Clave" onclick="seopalabras(3147);" border="0" src="imagen/palabras.png"></span>
+                                <span class="servicioconteopcion"><img title="Estadisticas" alt="Estadisticas" onclick="seoestadisticas();" border="0" src="imagen/estadisticas.png"></span>
+                                <span class="servicioconteopcion"><img title="Palabras Clave" alt="Palabras Clave" onclick="seopalabras();" border="0" src="imagen/palabras.png"></span>
                             </span>
                         </span>
                     </li>

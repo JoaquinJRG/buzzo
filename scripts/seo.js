@@ -18,14 +18,17 @@ function seoestadisticas() {
     });
 }
 
-function seopalabras() {
+function seopalabras(domain = 'https://grabadosel13.com') {
     $("#cargando").fadeIn("500", function () {
         $("#fconte_1").hide();
         $("#fconte_1_2").show();
 
         $.ajax({
-            url: 'scripts/datosSeo.php',
+            url: 'scripts/palabrasSeo.php',
             method: 'GET',
+            data: {
+                domain: domain
+            },
             dataType: 'json',
             success: function (response) {
                 // Top 10 por volumen de búsqueda
