@@ -58,12 +58,6 @@ abstract class ApiSeranking
         return json_decode($response, true);
     }
 
-    /**
-     * Ejecuta múltiples peticiones cURL en paralelo mediante curl_multi
-     *
-     * @param array $handles Arreglo asociativo de handles cURL ['clave' => $ch]
-     * @return array Arreglo asociativo con las respuestas decodificadas ['clave' => ['success' => bool, 'data' => array]]
-     */
     public static function multiRequest(array $handles): array
     {
         $mh = curl_multi_init();
