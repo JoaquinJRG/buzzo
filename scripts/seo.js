@@ -33,7 +33,7 @@ function obtenerCacheSeo(domain) {
 function guardarCacheSeo(domain, data) {
     cacheSeoPalabras[domain] = data;
     try {
-        
+        sessionStorage.setItem('seo_cache_' + domain, JSON.stringify(data));
     } catch (e) {
         // Ignorar si el almacenamiento está restringido
     }
@@ -191,11 +191,17 @@ function pintarGraficosSeo(response) {
         {
             type: 'bar',
             data: {
-                labels: response.mejorPosicion ? response.mejorPosicion.map(item => item.position) : [],
+                labels: response.organico ? ['Top 1-5', 'Top 6-10', 'Top 11-20', 'Top 21-50', 'Top 51-100'] : [],
                 datasets: [
                     {
                         label: 'Distribución del Ranking Orgánico',
-                        data: response.mejorPosicion ? response.mejorPosicion.map(item => item.count) : [],
+                        data: response.organico ? [
+                            response.organico.top1_5 || 0,
+                            response.organico.top6_10 || 0,
+                            response.organico.top11_20 || 0,
+                            response.organico.top21_50 || 0,
+                            response.organico.top51_100 || 0
+                        ] : [],
                     }
                 ]
             },
@@ -255,7 +261,6 @@ function seopalabras(domain = 'https://grabadosel13.com') {
     // 1. Comprobar si ya existen datos guardados en caché para este dominio
     const datosEnCache = obtenerCacheSeo(domain);
     if (datosEnCache) {
-        console.log('SEO: Cargando datos desde caché para:', domain);
         $("#fconte_1").hide();
         $("#fconte_1_1").show();
         pintarTablasSeo(datosEnCache);

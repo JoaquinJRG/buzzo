@@ -302,17 +302,31 @@ class KeyTrafico extends ApiSeranking
 class Organico extends ApiSeranking
 {
 
-
+    protected function extraerDatosOrganico(array $datos): array
+    {
+        return [
+            "top1_5" => $datos['organic']['top1_5'] ?? '',
+            "top6_10" => $datos['organic']['top6_10'] ?? '',
+            "top11_20" => $datos['organic']['top11_20'] ?? '',
+            "top21_50" => $datos['organic']['top21_50'] ?? '',
+            "top51_100" => $datos['organic']['top51_100'] ?? 0,
+        ];
+    }
 
     public function getEndpoint(int $limit = 10): string
     {
         return "domain/overview/db?source=es&domain={$this->domain}&limit={$limit}&with_subdomains=true";
     }
 
+    public function procesarDatos(array $datos, int $limit = 10): array
+    {
+        return $this->extraerDatosOrganico($datos);
+    }
+
     public function obtenerOrganico(int $limit = 10): array
     {
         $res = $this->request("GET", $this->getEndpoint($limit));
-        return is_array($res) ? $res : [];
+        return $this->procesarDatos(is_array($res) ? $res : [], $limit);
     }
 }
 

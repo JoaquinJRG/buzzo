@@ -188,6 +188,18 @@
                 <span>Histórico</span>
                 <span class="subtitulo">SEO</span>
             </div>
+            <div id="fconte_1_2_contenido">
+                <div class="tituloempresa">Empresa de Prueba</div>
+                <div class="tituloempresa">
+                    <div class="botones">
+                        <button class="boton">Tráfico total</button>
+                        <button class="boton">Keywords</button>
+                        <button class="boton">Coste tráfico</button>
+                    </div>
+                    <canvas class="" id="graficoHistorico"></canvas>
+                    
+                </div>
+            </div>
         </div>
     </div>
     <div id='menu'>
