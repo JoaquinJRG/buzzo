@@ -252,16 +252,6 @@
                 </a>
             </li>
             <li>
-                <a href='partes.php' class='menuboton'>
-                    <span class='menuicono'>
-                        <img src='imagen/partes.png' border='0' />
-                    </span>
-                    <span class='menutextocon'>
-                        <span class='menutexto'>Partes</span>
-                    </span>
-                </a>
-            </li>
-            <li>
                 <a href='salir.php' class='menuboton'>
                     <span class='menuicono'>
                         <img src='imagen/menusalir.svg' border='0' />
