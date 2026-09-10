@@ -181,7 +181,6 @@ function pintarTablasSeo(response) {
 
 function pintarGraficosSeo(response) {
 
-    console.log(response);
     Chart.defaults.color = '#000';
     Chart.defaults.backgroundColor = 'rgba(10,141,255,1)';
     Chart.defaults.font.size = 10;
