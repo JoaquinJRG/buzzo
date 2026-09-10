@@ -136,7 +136,6 @@
                 <div>Procesando....</div>
             </div>
         </div>
-        <script src='scripts/empresas.js?v=2.89' type='text/javascript'></script>
         <script src='scripts/final.js' type='text/javascript'></script>
     </body>
 </html>

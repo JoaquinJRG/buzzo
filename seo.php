@@ -190,14 +190,23 @@
             </div>
             <div id="fconte_1_2_contenido">
                 <div class="tituloempresa">Empresa de Prueba</div>
-                <div class="tituloempresa">
-                    <div class="botones">
-                        <button class="boton">Tráfico total</button>
-                        <button class="boton">Keywords</button>
-                        <button class="boton">Coste tráfico</button>
+                <div class="historico-panel">
+                    <div class="historico-toolbar">
+                        <div class="historico-metricas" role="tablist" aria-label="Métrica del histórico">
+                            <button class="historico-metrica activa" type="button" data-metrica="traffic_sum" role="tab" aria-selected="true">Tráfico total</button>
+                            <button class="historico-metrica" type="button" data-metrica="keywords_count" role="tab" aria-selected="false">Keywords</button>
+                            <button class="historico-metrica" type="button" data-metrica="price_sum" role="tab" aria-selected="false">Coste tráfico</button>
+                        </div>
+                        <div class="historico-periodos" role="group" aria-label="Periodo del histórico">
+                            <button class="historico-periodo" type="button" data-meses="6">6m</button>
+                            <button class="historico-periodo" type="button" data-meses="12">1a</button>
+                            <button class="historico-periodo" type="button" data-meses="24">2a</button>
+                            <button class="historico-periodo activo" type="button" data-meses="0">Todos</button>
+                        </div>
                     </div>
-                    <canvas class="" id="graficoHistorico"></canvas>
-                    
+                    <div class="historico-grafico">
+                        <canvas id="graficoHistorico"></canvas>
+                    </div>
                 </div>
             </div>
         </div>

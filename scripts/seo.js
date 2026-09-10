@@ -12,6 +12,7 @@ $('#cerrar_1_2').click(function () {
 
 // Caché en JavaScript para datos SEO
 const cacheSeoPalabras = {};
+const cacheSeoHistorico = {};
 
 function obtenerCacheSeo(domain) {
     if (cacheSeoPalabras[domain]) {
@@ -34,6 +35,32 @@ function guardarCacheSeo(domain, data) {
     cacheSeoPalabras[domain] = data;
     try {
         sessionStorage.setItem('seo_cache_' + domain, JSON.stringify(data));
+    } catch (e) {
+        // Ignorar si el almacenamiento está restringido
+    }
+}
+
+function obtenerCacheHistorico(domain) {
+    if (cacheSeoHistorico[domain]) {
+        return cacheSeoHistorico[domain];
+    }
+    try {
+        const stored = sessionStorage.getItem('seo_historico_cache_' + domain);
+        if (stored) {
+            const parsed = JSON.parse(stored);
+            cacheSeoHistorico[domain] = parsed;
+            return parsed;
+        }
+    } catch (e) {
+        // En caso de que sessionStorage no esté accesible
+    }
+    return null;
+}
+
+function guardarCacheHistorico(domain, data) {
+    cacheSeoHistorico[domain] = data;
+    try {
+        sessionStorage.setItem('seo_historico_cache_' + domain, JSON.stringify(data));
     } catch (e) {
         // Ignorar si el almacenamiento está restringido
     }
@@ -160,7 +187,7 @@ function pintarGraficosSeo(response) {
     Chart.defaults.font.size = 10;
     Chart.defaults.plugins.legend.position = 'bottom';
 
-    
+
     // Top 10 por volumen de búsqueda
     const graficoVolumen = $('#graficoVolumenBusqueda');
 
@@ -178,7 +205,10 @@ function pintarGraficosSeo(response) {
                 ]
             },
             options: {
-                indexAxis: "y"
+                indexAxis: "y",
+                plugins: {
+                    legend: { display: false }
+                }
             }
         }
     );
@@ -206,7 +236,10 @@ function pintarGraficosSeo(response) {
                 ]
             },
             options: {
-                indexAxis: "x"
+                indexAxis: "x",
+                plugins: {
+                    legend: { display: false }
+                }
             }
         }
     );
@@ -228,7 +261,10 @@ function pintarGraficosSeo(response) {
                 ]
             },
             options: {
-                indexAxis: "y"
+                indexAxis: "y",
+                plugins: {
+                    legend: { display: false }
+                }
             }
         }
     );
@@ -250,14 +286,17 @@ function pintarGraficosSeo(response) {
                 ]
             },
             options: {
-                indexAxis: "x"
+                indexAxis: "x",
+                plugins: {
+                    legend: { display: false }
+                }
             }
         }
     );
 
 }
 
-function seopalabras(domain = 'https://grabadosel13.com') {
+function seopalabras(domain = "https://grabadosel13.com") {
     // 1. Comprobar si ya existen datos guardados en caché para este dominio
     const datosEnCache = obtenerCacheSeo(domain);
     if (datosEnCache) {
@@ -310,8 +349,140 @@ function seopalabras(domain = 'https://grabadosel13.com') {
     });
 }
 
-function seohistorico() {
-    $("#fconte_1").hide();
-    $("#fconte_1_2").show();
+let graficoHistorico;
+let datosHistoricoActual = null;
+let metricaHistorico = 'traffic_sum';
+let mesesHistorico = 0;
+
+function pintarGraficosHistorico(response) {
+    response = response || {};
+    const organico = Array.isArray(response.historicoOrganico) ? response.historicoOrganico : [];
+    const pago = Array.isArray(response.historicoPago) ? response.historicoPago : [];
+    const registros = new Map();
+
+    const agregarRegistros = (fuente, historico) => historico.forEach(item => {
+        const clave = `${item.year}-${String(item.month).padStart(2, '0')}`;
+        if (!registros.has(clave)) {
+            registros.set(clave, { year: item.year, month: item.month, organico: null, pago: null });
+        }
+        registros.get(clave)[fuente] = item;
+    });
+    agregarRegistros('organico', organico);
+    agregarRegistros('pago', pago);
+
+    datosHistoricoActual = [...registros.values()].sort((a, b) => (
+        a.year - b.year || a.month - b.month
+    ));
+    actualizarGraficoHistorico();
 }
 
+function actualizarGraficoHistorico() {
+    if (!datosHistoricoActual) return;
+
+    const datos = mesesHistorico
+        ? datosHistoricoActual.slice(-mesesHistorico)
+        : datosHistoricoActual;
+    const nombresMeses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+    const labels = datos.map(item => `${nombresMeses[item.month - 1] || item.month} ${item.year}`);
+    const valores = (fuente) => datos.map(item => item[fuente] ? Number(item[fuente][metricaHistorico] || 0) : null);
+
+    if (graficoHistorico) graficoHistorico.destroy();
+    graficoHistorico = new Chart(document.getElementById('graficoHistorico'), {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [
+                {
+                    label: 'Orgánico',
+                    data: valores('organico'),
+                    borderColor: '#488dff',
+                    backgroundColor: '#488dff',
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#488dff',
+                    pointRadius: 3,
+                    borderWidth: 2,
+                    tension: 0.25,
+                    spanGaps: true
+                },
+                {
+                    label: 'De pago',
+                    data: valores('pago'),
+                    borderColor: '#8957f5',
+                    backgroundColor: '#8957f5',
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#8957f5',
+                    pointRadius: 3,
+                    borderWidth: 2,
+                    tension: 0.25,
+                    spanGaps: true
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            scales: {
+                y: { beginAtZero: true, grid: { color: 'rgba(115, 137, 165, 0.25)' } },
+                x: { grid: { color: 'rgba(115, 137, 165, 0.25)' } }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { usePointStyle: true, pointStyle: 'circle', padding: 18 }
+                }
+            }
+        }
+    });
+}
+
+$(document).on('click', '.historico-metrica', function () {
+    $('.historico-metrica').removeClass('activa').attr('aria-selected', 'false');
+    $(this).addClass('activa').attr('aria-selected', 'true');
+    metricaHistorico = $(this).data('metrica');
+    actualizarGraficoHistorico();
+});
+
+$(document).on('click', '.historico-periodo', function () {
+    $('.historico-periodo').removeClass('activa');
+    $(this).addClass('activa');
+    mesesHistorico = Number($(this).data('meses'));
+    actualizarGraficoHistorico();
+});
+
+function seohistorico(domain = "https://grabadosel13.com") {
+    const datosEnCache = obtenerCacheHistorico(domain);
+    if (datosEnCache) {
+        $("#fconte_1").hide();
+        $("#fconte_1_2").show();
+        pintarGraficosHistorico(datosEnCache);
+        return;
+    }
+
+    $("#cargando").fadeIn("500", function () {
+        $("#fconte_1").hide();
+        $("#fconte_1_2").show();
+
+        $.ajax({
+            url: 'scripts/historicoSeo.php',
+            method: 'GET',
+            data: {
+                domain: domain
+            },
+            dataType: 'json',
+            success: function (response) {
+                if (response && response.success) {
+                    guardarCacheHistorico(domain, response);
+                }
+
+                pintarGraficosHistorico(response);
+            },
+            error: function (xhr, status, error) {
+
+            },
+            complete: function () {
+                $("#cargando").fadeOut("500");
+            }
+        });
+    });
+}

@@ -333,7 +333,7 @@ class Organico extends ApiSeranking
 
 try {
     $apiKey = "f8f1935c-2ff4-84a6-471a-af8f241f8e8c";
-    $domain = !empty($_REQUEST['domain']) ? trim($_REQUEST['domain']) : "https://grabadosel13.com";
+    $domain = $_REQUEST['domain'];
 
     $competencia = new Competencia($apiKey, $domain);
     $masTrafico = new MasTrafico($apiKey, $domain);

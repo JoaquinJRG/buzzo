@@ -1039,6 +1039,66 @@ table.gridtable tfoot{
 	text-align:center;
 }
 
+.historico-panel{
+	background: rgba(255,255,255,0.75);
+	padding:0.8em;
+}
+
+.historico-toolbar{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	gap:0.75em;
+	flex-wrap:wrap;
+	margin-bottom:0.7em;
+}
+
+.historico-metricas,
+.historico-periodos{
+	display:flex;
+	align-items:center;
+	gap:0.25em;
+}
+
+.historico-metrica,
+.historico-periodo{
+	font-family:'PT Sans Narrow', sans-serif;
+	font-size:1em;
+	color:#315477;
+	background:transparent;
+	border:1px solid #d8e1ed;
+	padding:0.45em 0.75em;
+	cursor:pointer;
+}
+
+.historico-metrica:hover,
+.historico-periodo:hover{
+	background:#edf3fb;
+}
+
+.historico-metrica.activa{
+	background:#edf4ff;
+	color:#1761d1;
+	border-color: #488dff;
+}
+
+.historico-periodo{
+	border-color:#d8e1ed;
+	border-radius:1em;
+	padding:0.3em 0.7em;
+}
+
+.historico-periodo.activa{
+	background:#edf4ff;
+	border-color:#488dff;
+	color:#1761d1;
+}
+
+.historico-grafico{
+	height:21em;
+	position:relative;
+}
+
 .pperfil {
 	width:100%;
 	font-family: verdana,arial,sans-serif;
