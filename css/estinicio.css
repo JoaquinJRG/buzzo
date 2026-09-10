@@ -1044,6 +1044,75 @@ table.gridtable tfoot{
 	padding:0.8em;
 }
 
+.historico-resumen{
+	margin-bottom:0.5em;
+	font-family:'PT Sans Narrow', sans-serif;
+}
+
+.historico-aviso{
+	color:#315477;
+	font-size:0.85em;
+	padding:0.15em 0.35em 0.55em;
+	text-align:left;
+}
+
+.historico-tarjetas{
+	display:grid;
+	grid-template-columns:repeat(4, minmax(0, 1fr));
+	gap:0.75em;
+}
+
+.historico-tarjeta{
+	background:rgba(255,255,255,0.75);
+	min-height:7.6em;
+	padding:0.8em;
+	text-align:left;
+}
+
+.historico-tarjeta-titulo{
+	color:#315477;
+	font-size:0.85em;
+	font-weight:700;
+	letter-spacing:0.04em;
+	margin-bottom:0.65em;
+	text-transform:uppercase;
+}
+
+.historico-valor{
+	color:#1761d1;
+	font-size:1.8em;
+	line-height:1;
+}
+
+.historico-valor small,
+.historico-dato small{
+	color:#16a05a;
+	font-size:0.55em;
+	vertical-align:middle;
+}
+
+.historico-unidad{
+	color:#6a7f99;
+	font-size:0.75em;
+	margin:0.25em 0 0.7em;
+}
+
+.historico-dato{
+	color:#315477;
+	display:flex;
+	font-size:0.85em;
+	justify-content:space-between;
+	gap:0.5em;
+	margin-top:0.45em;
+}
+
+.historico-dato strong{
+	color:#1d3d63;
+	font-weight:400;
+	text-align:right;
+	white-space:nowrap;
+}
+
 .historico-toolbar{
 	display:flex;
 	justify-content:space-between;

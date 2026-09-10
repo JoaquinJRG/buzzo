@@ -186,7 +186,6 @@ function pintarGraficosSeo(response) {
     Chart.defaults.font.size = 10;
     Chart.defaults.plugins.legend.position = 'bottom';
 
-
     // Top 10 por volumen de búsqueda
     const graficoVolumen = $('#graficoVolumenBusqueda');
 
@@ -207,6 +206,9 @@ function pintarGraficosSeo(response) {
                 indexAxis: "y",
                 plugins: {
                     legend: { display: false }
+                },
+                layout: {
+                    padding: 30
                 }
             }
         }
@@ -238,6 +240,9 @@ function pintarGraficosSeo(response) {
                 indexAxis: "x",
                 plugins: {
                     legend: { display: false }
+                },
+                layout: {
+                    padding: 30
                 }
             }
         }
@@ -263,6 +268,9 @@ function pintarGraficosSeo(response) {
                 indexAxis: "y",
                 plugins: {
                     legend: { display: false }
+                },
+                layout: {
+                    padding: 30
                 }
             }
         }
@@ -288,6 +296,9 @@ function pintarGraficosSeo(response) {
                 indexAxis: "x",
                 plugins: {
                     legend: { display: false }
+                },
+                layout: {
+                    padding: 30
                 }
             }
         }

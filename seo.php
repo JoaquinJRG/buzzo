@@ -190,6 +190,34 @@
             </div>
             <div id="fconte_1_2_contenido">
                 <div class="tituloempresa">Empresa de Prueba</div>
+                <div class="historico-resumen">
+                    <div class="historico-tarjetas">
+                        <div class="historico-tarjeta">
+                            <div class="historico-tarjeta-titulo">Autoridad</div>
+                            <div class="historico-dato"><span>Domain Trust</span><strong>—</strong></div>
+                            <div class="historico-dato"><span>Page Trust</span><strong>—</strong></div>
+                        </div>
+                        <div class="historico-tarjeta">
+                            <div class="historico-tarjeta-titulo">Tráfico orgánico</div>
+                            <div class="historico-valor">2.8K <small>↑ 123</small></div>
+                            <div class="historico-unidad">Clics/mes</div>
+                            <div class="historico-dato"><span>Palabras clave</span><strong>2.6K <small>↑ 17</small></strong></div>
+                            <div class="historico-dato"><span>Coste tráfico</span><strong>€0 <small>↑ €149</small></strong></div>
+                        </div>
+                        <div class="historico-tarjeta">
+                            <div class="historico-tarjeta-titulo">Tráfico de pago</div>
+                            <div class="historico-valor">0 <small>0</small></div>
+                            <div class="historico-unidad">Clics/mes</div>
+                            <div class="historico-dato"><span>Keywords de pago</span><strong>0 <small>0</small></strong></div>
+                            <div class="historico-dato"><span>Coste tráfico</span><strong>€0</strong></div>
+                        </div>
+                        <div class="historico-tarjeta">
+                            <div class="historico-tarjeta-titulo">Backlinks</div>
+                            <div class="historico-dato"><span>Dominios de referencia</span><strong>—</strong></div>
+                            <div class="historico-dato"><span>Backlinks</span><strong>—</strong></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="historico-panel">
                     <div class="historico-toolbar">
                         <div class="historico-metricas" role="tablist" aria-label="Métrica del histórico">
