@@ -67,24 +67,24 @@
             </div>
             <div id="fconte_1_1_contenido">
                 <div class="tituloempresa">Empresa de Prueba</div>
-                <div class="tituloempresa">
-                    <h4>Top 10 keywords por volumen</h4>
-                    <canvas class="" id="graficoVolumenBusqueda"></canvas>
+                <div class="tituloempresa estadistica-grafico estadistica-grafico-horizontal">
+                    <h4>Top 10 keywords por volumen <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre el volumen de búsqueda">?<span class="seo-ayuda-texto">Muestra las 10 palabras clave con mayor volumen de búsquedas estimado y su posición actual.</span></span></h4>
+                    <div class="estadistica-grafico-contenedor"><canvas id="graficoVolumenBusqueda"></canvas></div>
                 </div>
-                <div class="tituloempresa">
-                    <h4>Distribución del ranking orgánico</h4>
-                    <canvas id="graficoOrganico"></canvas>
+                <div class="tituloempresa estadistica-grafico">
+                    <h4>Distribución del ranking orgánico <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre la distribución del ranking orgánico">?<span class="seo-ayuda-texto">Indica cuántas palabras clave se encuentran en cada intervalo de posiciones de los resultados orgánicos.</span></span></h4>
+                    <div class="estadistica-grafico-contenedor"><canvas id="graficoOrganico"></canvas></div>
                 </div>
-                <div class="tituloempresa">
-                    <h4>Top keywords por tráfico</h4>
-                    <canvas id="graficoTrafico"></canvas>
+                <div class="tituloempresa estadistica-grafico estadistica-grafico-horizontal">
+                    <h4>Top keywords por tráfico <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre las keywords con más tráfico">?<span class="seo-ayuda-texto">Muestra las palabras clave que generan más tráfico orgánico estimado hacia el dominio.</span></span></h4>
+                    <div class="estadistica-grafico-contenedor"><canvas id="graficoTrafico"></canvas></div>
                 </div>
-                <div class="tituloempresa">
-                    <h4>Competencia (KW comunes)</h4>
-                    <canvas id="graficoCompetencia"></canvas>
+                <div class="tituloempresa estadistica-grafico">
+                    <h4>Competencia (KW comunes) <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre la competencia">?<span class="seo-ayuda-texto">Compara el dominio con otros sitios que comparten palabras clave y muestra el número de keywords comunes.</span></span></h4>
+                    <div class="estadistica-grafico-contenedor"><canvas id="graficoCompetencia"></canvas></div>
                 </div>
 
-                <div class="tituloempresa">Top 10 por volumen de búsqueda</div>
+                <div class="tituloempresa seo-titulo-ayuda">Top 10 por volumen de búsqueda <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre la tabla de volumen de búsqueda">?<span class="seo-ayuda-texto">Detalle de las 10 keywords con mayor volumen estimado, incluyendo posición, volumen y tráfico estimado.</span></span></div>
                 <table class="gridtable" id="listadovolumenbusqueda">
                     <thead>
                         <tr>
@@ -107,7 +107,7 @@
                     </tfoot>
                 </table>
 
-                <div class="tituloempresa">Top 10 por mejor posición</div>
+                <div class="tituloempresa seo-titulo-ayuda">Top 10 por mejor posición <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre la tabla de mejor posición">?<span class="seo-ayuda-texto">Detalle de las keywords que ocupan las mejores posiciones orgánicas del dominio.</span></span></div>
                 <table class="gridtable" id="listadomejorposicion">
                     <thead>
                         <tr>
@@ -130,7 +130,7 @@
                     </tfoot>
                 </table>
 
-                <div class="tituloempresa">Competencia</div>
+                <div class="tituloempresa seo-titulo-ayuda">Competencia <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre la tabla de competencia">?<span class="seo-ayuda-texto">Lista los dominios competidores y la cantidad de palabras clave que ambos sitios tienen en común.</span></span></div>
                 <table class="gridtable" id="listadocompetencia">
                     <thead>
                         <tr>
@@ -149,7 +149,7 @@
                     </tfoot>
                 </table>
 
-                <div class="tituloempresa">Páginas con más tráfico</div>
+                <div class="tituloempresa seo-titulo-ayuda">Páginas con más tráfico <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre la tabla de páginas con más tráfico">?<span class="seo-ayuda-texto">Muestra las páginas del dominio que concentran más tráfico orgánico estimado.</span></span></div>
                 <table class="gridtable" id="listadopaginas">
                     <thead>
                         <tr>
@@ -194,8 +194,8 @@
                     <div class="historico-tarjetas">
                         <div class="historico-tarjeta">
                             <div class="historico-tarjeta-titulo">Autoridad</div>
-                            <div class="historico-dato"><span>Domain Trust</span><strong>—</strong></div>
-                            <div class="historico-dato"><span>Page Trust</span><strong>—</strong></div>
+                            <div class="historico-dato"><span>Domain Trust</span><strong id="historicoDomainTrust">—</strong></div>
+                            <div class="historico-dato"><span>Page Trust</span><strong id="historicoPageTrust">—</strong></div>
                         </div>
                         <div class="historico-tarjeta">
                             <div class="historico-tarjeta-titulo">Tráfico orgánico</div>
@@ -213,8 +213,8 @@
                         </div>
                         <div class="historico-tarjeta">
                             <div class="historico-tarjeta-titulo">Backlinks</div>
-                            <div class="historico-dato"><span>Dominios de referencia</span><strong>—</strong></div>
-                            <div class="historico-dato"><span>Backlinks</span><strong>—</strong></div>
+                            <div class="historico-dato"><span>Dominios de referencia</span><strong id="historicoRefdomains">—</strong></div>
+                            <div class="historico-dato"><span>Backlinks</span><strong id="historicoBacklinks">—</strong></div>
                         </div>
                     </div>
                 </div>

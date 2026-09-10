@@ -41,21 +41,32 @@ abstract class ApiSeranking
     // Método para realizar solicitudes individuales
     protected function request($method, $endpoint, $data = null)
     {
-        $ch = $this->createCurlHandle($method, $endpoint, $data);
-        $response = curl_exec($ch);
-        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $error = curl_error($ch);
-        curl_close($ch);
+        $maxAttempts = 3;
 
-        if ($error) {
-            throw new Exception("Error CURL: $error");
+        for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
+            $ch = $this->createCurlHandle($method, $endpoint, $data);
+            $response = curl_exec($ch);
+            $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $error = curl_error($ch);
+            curl_close($ch);
+
+            if ($error) {
+                throw new Exception("Error CURL: $error");
+            }
+
+            if ($statusCode === 429 && $attempt < $maxAttempts) {
+                usleep((2 ** ($attempt - 1)) * 1000000);
+                continue;
+            }
+
+            if ($statusCode >= 400) {
+                throw new Exception("Error API (HTTP $statusCode): $response");
+            }
+
+            return json_decode($response, true);
         }
 
-        if ($statusCode >= 400) {
-            throw new Exception("Error API (HTTP $statusCode): $response");
-        }
-
-        return json_decode($response, true);
+        throw new Exception("Error API (HTTP 429): demasiadas solicitudes");
     }
 
     public static function multiRequest(array $handles): array
@@ -368,10 +379,12 @@ try {
         ],
     ], JSON_UNESCAPED_UNICODE);
 } catch (Exception $e) {
+    if (strpos($e->getMessage(), 'HTTP 429') !== false) {
+        http_response_code(429);
+    }
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode([
         'success' => false,
         'error' => $e->getMessage(),
     ], JSON_UNESCAPED_UNICODE);
 }
-

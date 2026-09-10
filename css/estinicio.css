@@ -566,6 +566,89 @@ body{
 	padding:0.35em;
 }
 
+.estadistica-grafico{
+	padding:0.6em;
+}
+
+.estadistica-grafico h4{
+	margin:0 0 0.35em;
+	color:#315477;
+	font-size:0.9em;
+	font-weight:700;
+}
+
+.estadistica-grafico-contenedor{
+	height:11em;
+	position:relative;
+}
+
+.estadistica-grafico-horizontal .estadistica-grafico-contenedor{
+	height:14em;
+}
+
+.estadistica-grafico-contenedor canvas{
+	width:100% !important;
+	height:100% !important;
+}
+
+.seo-titulo-ayuda{
+	display:flex !important;
+	align-items:center;
+	justify-content:center;
+	gap:0.4em;
+}
+
+.seo-ayuda{
+	display:inline-flex;
+	position:relative;
+	align-items:center;
+	justify-content:center;
+	width:1.35em;
+	height:1.35em;
+	flex:0 0 auto;
+	border:1px solid #488dff;
+	border-radius:50%;
+	color:#1761d1;
+	font-size:0.75em;
+	font-weight:700;
+	cursor:help;
+	outline:none;
+}
+
+.seo-ayuda-texto{
+	position:absolute;
+	left:50%;
+	bottom:calc(100% + 0.55em);
+	z-index:10;
+	display:none;
+	width:19em;
+	padding:0.7em 0.8em;
+	border-radius:0.35em;
+	background:#1d3d63;
+	color:#fff;
+	font-size:0.9rem;
+	font-weight:400;
+	line-height:1.35;
+	text-align:left;
+	box-shadow:0 0.25em 0.8em rgba(29,61,99,0.25);
+	transform:translateX(-50%);
+}
+
+.seo-ayuda-texto::after{
+	content:"";
+	position:absolute;
+	top:100%;
+	left:50%;
+	border:0.4em solid transparent;
+	border-top-color:#1d3d63;
+	transform:translateX(-50%);
+}
+
+.seo-ayuda:hover .seo-ayuda-texto,
+.seo-ayuda:focus .seo-ayuda-texto{
+	display:block;
+}
+
 .contenidos .cabecera{
 	display:block;
 	margin:0.25em 0 0.25em 0;

@@ -204,11 +204,21 @@ function pintarGraficosSeo(response) {
             },
             options: {
                 indexAxis: "y",
+                responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: { display: false }
                 },
                 layout: {
-                    padding: 30
+                    padding: 8
+                },
+                scales: {
+                    x: {
+                        ticks: { font: { size: 9 } }
+                    },
+                    y: {
+                        ticks: { font: { size: 9 } }
+                    }
                 }
             }
         }
@@ -238,11 +248,21 @@ function pintarGraficosSeo(response) {
             },
             options: {
                 indexAxis: "x",
+                responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: { display: false }
                 },
                 layout: {
-                    padding: 30
+                    padding: 8
+                },
+                scales: {
+                    x: {
+                        ticks: { font: { size: 9 } }
+                    },
+                    y: {
+                        ticks: { font: { size: 9 } }
+                    }
                 }
             }
         }
@@ -266,11 +286,21 @@ function pintarGraficosSeo(response) {
             },
             options: {
                 indexAxis: "y",
+                responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: { display: false }
                 },
                 layout: {
-                    padding: 30
+                    padding: 8
+                },
+                scales: {
+                    x: {
+                        ticks: { font: { size: 9 } }
+                    },
+                    y: {
+                        ticks: { font: { size: 9 } }
+                    }
                 }
             }
         }
@@ -294,11 +324,21 @@ function pintarGraficosSeo(response) {
             },
             options: {
                 indexAxis: "x",
+                responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: { display: false }
                 },
                 layout: {
-                    padding: 30
+                    padding: 8
+                },
+                scales: {
+                    x: {
+                        ticks: { font: { size: 9 } }
+                    },
+                    y: {
+                        ticks: { font: { size: 9 } }
+                    }
                 }
             }
         }
@@ -364,8 +404,42 @@ let datosHistoricoActual = null;
 let metricaHistorico = 'traffic_sum';
 let mesesHistorico = 0;
 
+function pintarResumenHistorico(response) {
+    const autoridad = response && response.backLinkAuthority;
+    const paginasAutoridad = autoridad && Array.isArray(autoridad.pages)
+        ? autoridad.pages[0]
+        : null;
+    const resumen = response && response.backLinkSummary;
+    const datosBacklinks = resumen && Array.isArray(resumen.summary)
+        ? resumen.summary[0]
+        : null;
+
+    $('#historicoDomainTrust').text(
+        paginasAutoridad && paginasAutoridad.domain_inlink_rank != null
+            ? paginasAutoridad.domain_inlink_rank
+            : '—'
+    );
+    $('#historicoPageTrust').text(
+        paginasAutoridad && paginasAutoridad.inlink_rank != null
+            ? paginasAutoridad.inlink_rank
+            : '—'
+    );
+    $('#historicoRefdomains').text(
+        datosBacklinks && datosBacklinks.refdomains != null
+            ? datosBacklinks.refdomains
+            : '—'
+    );
+    $('#historicoBacklinks').text(
+        datosBacklinks && datosBacklinks.backlinks != null
+            ? datosBacklinks.backlinks
+            : '—'
+    );
+}
+
 function pintarGraficosHistorico(response) {
+    console.log('Datos históricos recibidos:', response);
     response = response || {};
+    pintarResumenHistorico(response);
     const organico = Array.isArray(response.historicoOrganico) ? response.historicoOrganico : [];
     const pago = Array.isArray(response.historicoPago) ? response.historicoPago : [];
     const registros = new Map();
@@ -483,12 +557,35 @@ function seohistorico(domain = "https://grabadosel13.com") {
             success: function (response) {
                 if (response && response.success) {
                     guardarCacheHistorico(domain, response);
+                    pintarGraficosHistorico(response);
+                    return;
                 }
 
-                pintarGraficosHistorico(response);
+                const mensaje = response && response.error
+                    ? response.error
+                    : 'Error al cargar el histórico SEO';
+                console.error(mensaje);
+                $('#graficoHistorico').replaceWith(
+                    $('<div>', {
+                        id: 'graficoHistorico',
+                        class: 'text-center',
+                        text: mensaje
+                    })
+                );
             },
             error: function (xhr, status, error) {
-
+                let mensaje = 'Error al cargar el histórico SEO';
+                if (xhr.responseJSON && xhr.responseJSON.error) {
+                    mensaje += ': ' + xhr.responseJSON.error;
+                }
+                console.error(mensaje, error);
+                $('#graficoHistorico').replaceWith(
+                    $('<div>', {
+                        id: 'graficoHistorico',
+                        class: 'text-center',
+                        text: mensaje
+                    })
+                );
             },
             complete: function () {
                 $("#cargando").fadeOut("500");

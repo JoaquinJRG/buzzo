@@ -41,21 +41,32 @@ abstract class ApiSeranking
     // Método para realizar solicitudes individuales
     protected function request($method, $endpoint, $data = null)
     {
-        $ch = $this->createCurlHandle($method, $endpoint, $data);
-        $response = curl_exec($ch);
-        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $error = curl_error($ch);
-        curl_close($ch);
+        $maxAttempts = 3;
 
-        if ($error) {
-            throw new Exception("Error CURL: $error");
+        for ($attempt = 1; $attempt <= $maxAttempts; $attempt++) {
+            $ch = $this->createCurlHandle($method, $endpoint, $data);
+            $response = curl_exec($ch);
+            $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $error = curl_error($ch);
+            curl_close($ch);
+
+            if ($error) {
+                throw new Exception("Error CURL: $error");
+            }
+
+            if ($statusCode === 429 && $attempt < $maxAttempts) {
+                usleep((2 ** ($attempt - 1)) * 1000000);
+                continue;
+            }
+
+            if ($statusCode >= 400) {
+                throw new Exception("Error API (HTTP $statusCode): $response");
+            }
+
+            return json_decode($response, true);
         }
 
-        if ($statusCode >= 400) {
-            throw new Exception("Error API (HTTP $statusCode): $response");
-        }
-
-        return json_decode($response, true);
+        throw new Exception("Error API (HTTP 429): demasiadas solicitudes");
     }
 
     public static function multiRequest(array $handles): array
@@ -179,25 +190,60 @@ class HistoricoOrganico extends ApiSeranking
     }
 }
 
+class BackLinkSummary extends ApiSeranking
+{
+    public function getEndpoint(): string
+    {
+        return "backlinks/summary?source=es&target={$this->domain}&mode=domain";
+    }
+
+    public function obtenerBackLinkSummary(): array
+    {
+        $res = $this->request("GET", $this->getEndpoint());
+        return is_array($res) ? $res : [];
+    }
+}
+
+class BackLinkAuthority extends ApiSeranking
+{
+    public function getEndpoint(): string
+    {
+        return "backlinks/authority?source=es&target={$this->domain}&mode=domain";
+    }
+
+    public function obtenerBackLinkAuthority(): array
+    {
+        $res = $this->request("GET", $this->getEndpoint());
+        return is_array($res) ? $res : [];
+    }
+}
+
 try {
     $apiKey = "f8f1935c-2ff4-84a6-471a-af8f241f8e8c";
     $domain = $_REQUEST['domain'];
 
     $historicoPago = new HistoricoPago($apiKey, $domain);
     $historicoOrganico = new HistoricoOrganico($apiKey, $domain);
+    $backLinkSummary = new BackLinkSummary($apiKey, $domain);
+    $backLinkAuthority = new BackLinkAuthority($apiKey, $domain);
 
-    // Recuperamos suficiente histórico para que los filtros de periodo se resuelvan en el cliente.
     $datosHistoricoPago = $historicoPago->obtenerHistoricoPago(100);
     $datosHistoricoOrganico = $historicoOrganico->obtenerHistoricoOrganico(100);
+    $datosBackLinkSummary = $backLinkSummary->obtenerBackLinkSummary();
+    $datosBackLinkAuthority = $backLinkAuthority->obtenerBackLinkAuthority();
 
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode([
         'success' => true,
         'historicoPago' => $datosHistoricoPago,
         'historicoOrganico' => $datosHistoricoOrganico,
-
+        'backLinkSummary' => $datosBackLinkSummary,
+        'backLinkAuthority' => $datosBackLinkAuthority,
     ], JSON_UNESCAPED_UNICODE);
 } catch (Exception $e) {
+    if (strpos($e->getMessage(), 'HTTP 429') !== false) {
+        http_response_code(429);
+    }
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode([
         'success' => false,
