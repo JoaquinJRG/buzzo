@@ -193,26 +193,26 @@
                 <div class="historico-resumen">
                     <div class="historico-tarjetas">
                         <div class="historico-tarjeta">
-                            <div class="historico-tarjeta-titulo">Autoridad</div>
+                            <div class="historico-tarjeta-titulo">Autoridad <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre la autoridad">?<span class="seo-ayuda-texto">Mide la fuerza y confianza que los enlaces aportan al dominio y a sus páginas.</span></span></div>
                             <div class="historico-dato"><span>Domain Trust</span><strong id="historicoDomainTrust">—</strong></div>
                             <div class="historico-dato"><span>Page Trust</span><strong id="historicoPageTrust">—</strong></div>
                         </div>
                         <div class="historico-tarjeta">
-                            <div class="historico-tarjeta-titulo">Tráfico orgánico</div>
-                            <div class="historico-valor">2.8K <small>↑ 123</small></div>
+                            <div class="historico-tarjeta-titulo">Tráfico orgánico <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre el tráfico orgánico">?<span class="seo-ayuda-texto">Visitas estimadas procedentes de resultados no pagados de los buscadores.</span></span></div>
+                            <div class="historico-valor" id="historicoOrganicoTraffic">—</div>
                             <div class="historico-unidad">Clics/mes</div>
-                            <div class="historico-dato"><span>Palabras clave</span><strong>2.6K <small>↑ 17</small></strong></div>
-                            <div class="historico-dato"><span>Coste tráfico</span><strong>€0 <small>↑ €149</small></strong></div>
+                            <div class="historico-dato"><span>Palabras clave</span><strong id="historicoOrganicoKeywords">—</strong></div>
+                            <div class="historico-dato"><span>Coste tráfico</span><strong id="historicoOrganicoPrice">—</strong></div>
                         </div>
                         <div class="historico-tarjeta">
-                            <div class="historico-tarjeta-titulo">Tráfico de pago</div>
-                            <div class="historico-valor">0 <small>0</small></div>
+                            <div class="historico-tarjeta-titulo">Tráfico de pago <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre el tráfico de pago">?<span class="seo-ayuda-texto">Visitas estimadas procedentes de campañas y anuncios pagados.</span></span></div>
+                            <div class="historico-valor" id="historicoPagoTraffic">—</div>
                             <div class="historico-unidad">Clics/mes</div>
-                            <div class="historico-dato"><span>Keywords de pago</span><strong>0 <small>0</small></strong></div>
-                            <div class="historico-dato"><span>Coste tráfico</span><strong>€0</strong></div>
+                            <div class="historico-dato"><span>Keywords de pago</span><strong id="historicoPagoKeywords">—</strong></div>
+                            <div class="historico-dato"><span>Coste tráfico</span><strong id="historicoPagoPrice">—</strong></div>
                         </div>
                         <div class="historico-tarjeta">
-                            <div class="historico-tarjeta-titulo">Backlinks</div>
+                            <div class="historico-tarjeta-titulo">Backlinks <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre los backlinks">?<span class="seo-ayuda-texto">Enlaces externos que apuntan al dominio y ayudan a evaluar su popularidad.</span></span></div>
                             <div class="historico-dato"><span>Dominios de referencia</span><strong id="historicoRefdomains">—</strong></div>
                             <div class="historico-dato"><span>Backlinks</span><strong id="historicoBacklinks">—</strong></div>
                         </div>
@@ -221,9 +221,9 @@
                 <div class="historico-panel">
                     <div class="historico-toolbar">
                         <div class="historico-metricas" role="tablist" aria-label="Métrica del histórico">
-                            <button class="historico-metrica activa" type="button" data-metrica="traffic_sum" role="tab" aria-selected="true">Tráfico total</button>
-                            <button class="historico-metrica" type="button" data-metrica="keywords_count" role="tab" aria-selected="false">Keywords</button>
-                            <button class="historico-metrica" type="button" data-metrica="price_sum" role="tab" aria-selected="false">Coste tráfico</button>
+                            <button class="historico-metrica activa" type="button" data-metrica="traffic_sum" role="tab" aria-selected="true">Tráfico total <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre el tráfico total">?<span class="seo-ayuda-texto">Suma del tráfico orgánico y de pago estimado para cada mes.</span></span></button>
+                            <button class="historico-metrica" type="button" data-metrica="keywords_count" role="tab" aria-selected="false">Keywords <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre las keywords">?<span class="seo-ayuda-texto">Número de palabras clave posicionadas, separando el tráfico orgánico y de pago.</span></span></button>
+                            <button class="historico-metrica" type="button" data-metrica="price_sum" role="tab" aria-selected="false">Coste tráfico <span class="seo-ayuda" tabindex="0" role="img" aria-label="Ayuda sobre el coste del tráfico">?<span class="seo-ayuda-texto">Valor económico estimado del tráfico generado en cada mes.</span></span></button>
                         </div>
                         <div class="historico-periodos" role="group" aria-label="Periodo del histórico">
                             <button class="historico-periodo" type="button" data-meses="6">6m</button>

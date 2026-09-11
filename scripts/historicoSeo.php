@@ -218,6 +218,20 @@ class BackLinkAuthority extends ApiSeranking
     }
 }
 
+class Overview extends ApiSeranking
+{
+    public function getEndpoint(): string
+    {
+        return "domain/overview/db?source=es&domain={$this->domain}&with_subdomains=true";
+    }
+
+    public function obtenerOverview(): array
+    {
+        $res = $this->request("GET", $this->getEndpoint());
+        return is_array($res) ? $res : [];
+    }
+}
+
 try {
     $apiKey = "f8f1935c-2ff4-84a6-471a-af8f241f8e8c";
     $domain = $_REQUEST['domain'];
@@ -226,11 +240,13 @@ try {
     $historicoOrganico = new HistoricoOrganico($apiKey, $domain);
     $backLinkSummary = new BackLinkSummary($apiKey, $domain);
     $backLinkAuthority = new BackLinkAuthority($apiKey, $domain);
+    $overview = new Overview($apiKey, $domain);
 
     $datosHistoricoPago = $historicoPago->obtenerHistoricoPago(100);
     $datosHistoricoOrganico = $historicoOrganico->obtenerHistoricoOrganico(100);
     $datosBackLinkSummary = $backLinkSummary->obtenerBackLinkSummary();
     $datosBackLinkAuthority = $backLinkAuthority->obtenerBackLinkAuthority();
+    $datosOverview = $overview->obtenerOverview();
 
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode([
@@ -239,6 +255,7 @@ try {
         'historicoOrganico' => $datosHistoricoOrganico,
         'backLinkSummary' => $datosBackLinkSummary,
         'backLinkAuthority' => $datosBackLinkAuthority,
+        'datosOverview' => $datosOverview,
     ], JSON_UNESCAPED_UNICODE);
 } catch (Exception $e) {
     if (strpos($e->getMessage(), 'HTTP 429') !== false) {

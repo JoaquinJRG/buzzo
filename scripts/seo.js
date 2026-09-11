@@ -413,6 +413,26 @@ function pintarResumenHistorico(response) {
     const datosBacklinks = resumen && Array.isArray(resumen.summary)
         ? resumen.summary[0]
         : null;
+    const overview = response && response.datosOverview;
+    const datosOrganico = overview && overview.organic;
+    const datosPago = overview && (overview.adv || overview.paid || overview.pago);
+    const obtenerMetrica = (datos, nombres) => {
+        if (!datos || typeof datos !== 'object') return null;
+        for (const nombre of nombres) {
+            if (datos[nombre] != null) return datos[nombre];
+        }
+        return null;
+    };
+    const formatearNumero = (valor, moneda = false) => {
+        if (valor == null || valor === '') return '—';
+        const numero = Number(valor);
+        if (!Number.isFinite(numero)) return String(valor);
+        const texto = new Intl.NumberFormat('es-ES', {
+            notation: 'compact',
+            maximumFractionDigits: 1
+        }).format(numero);
+        return moneda ? `€${texto}` : texto;
+    };
 
     $('#historicoDomainTrust').text(
         paginasAutoridad && paginasAutoridad.domain_inlink_rank != null
@@ -434,6 +454,26 @@ function pintarResumenHistorico(response) {
             ? datosBacklinks.backlinks
             : '—'
     );
+    $('#historicoOrganicoTraffic').text(formatearNumero(
+        obtenerMetrica(datosOrganico, ['traffic_sum', 'traffic'])
+    ));
+    $('#historicoOrganicoKeywords').text(formatearNumero(
+        obtenerMetrica(datosOrganico, ['keywords_count', 'keywords'])
+    ));
+    $('#historicoOrganicoPrice').text(formatearNumero(
+        obtenerMetrica(datosOrganico, ['price_sum', 'price']),
+        true
+    ));
+    $('#historicoPagoTraffic').text(formatearNumero(
+        obtenerMetrica(datosPago, ['traffic_sum', 'traffic'])
+    ));
+    $('#historicoPagoKeywords').text(formatearNumero(
+        obtenerMetrica(datosPago, ['keywords_count', 'keywords'])
+    ));
+    $('#historicoPagoPrice').text(formatearNumero(
+        obtenerMetrica(datosPago, ['price_sum', 'price']),
+        true
+    ));
 }
 
 function pintarGraficosHistorico(response) {
