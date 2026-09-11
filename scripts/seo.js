@@ -346,7 +346,7 @@ function pintarGraficosSeo(response) {
 
 }
 
-function seopalabras(domain = "https://grabadosel13.com") {
+function seopalabras(domain = "https://cafeteatrocentral.es") {
     // 1. Comprobar si ya existen datos guardados en caché para este dominio
     const datosEnCache = obtenerCacheSeo(domain);
     if (datosEnCache) {
@@ -574,7 +574,7 @@ $(document).on('click', '.historico-periodo', function () {
     actualizarGraficoHistorico();
 });
 
-function seohistorico(domain = "https://grabadosel13.com") {
+function seohistorico(domain = "https://cafeteatrocentral.es") {
     const datosEnCache = obtenerCacheHistorico(domain);
     if (datosEnCache) {
         $("#fconte_1").hide();
