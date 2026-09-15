@@ -32,7 +32,7 @@
                 <br />
                 <span>Técnico Cubetic Consultores</span>
             </div>
-            <div class='titulo'>Proyectos</div>
+            <div class='titulo'>Gestión de Proyectos</div>
             <div class="empresas">
                 <ul>
                     <li onclick="empresa()">
@@ -63,7 +63,7 @@
         </div>
         <div class="contenidos">
             <div class="cabecera"><img src="imagen/buzzo.svg"><br><span>Técnico Cubetic Consultores</span></div>
-            <div class="titulo"><span>Empresa</span><span class="subtitulo">Empresa</span></div>
+            <div class="titulo"><span>Empresa</span><span class="subtitulo">Gestión de Proyectos</span></div>
             <div id="fconte_2_contenido">
                 <div class="pperfil">
                     <div class="pperfilimagen"><img src="imagen/empresa.jpg" border="0"></div>
@@ -75,16 +75,40 @@
                 </div>
                 <div class="oppciones">
                     <ul>
-                        <li onclick="trabaja(5965);">
+                        <li onclick="proyectos();">
                             <span class="oppcionfoto"><img src="imagen/trabajadores.svg" border="0"></span>
                             <span class="oppcionconte">
-                                <span class="oppcioncontea">Trabajadores</span>
+                                <span class="oppcioncontea">Proyectos</span>
                             </span>
                         </li>
-                        <li onclick="centros(5965);">
+                        <li onclick="partes();">
                             <span class="oppcionfoto"><img src="imagen/centrotrabajo.svg" border="0"></span>
                             <span class="oppcionconte">
-                                <span class="oppcioncontea">Centros de trabajo</span>
+                                <span class="oppcioncontea">Partes</span>
+                            </span>
+                        </li>
+                        <li onclick="clientes();">
+                            <span class="oppcionfoto"><img src="imagen/centrotrabajo.svg" border="0"></span>
+                            <span class="oppcionconte">
+                                <span class="oppcioncontea">Clientes</span>
+                            </span>
+                        </li>
+                        <li onclick="planificador();">
+                            <span class="oppcionfoto"><img src="imagen/centrotrabajo.svg" border="0"></span>
+                            <span class="oppcionconte">
+                                <span class="oppcioncontea">Planificador</span>
+                            </span>
+                        </li>
+                        <li onclick="historial();">
+                            <span class="oppcionfoto"><img src="imagen/centrotrabajo.svg" border="0"></span>
+                            <span class="oppcionconte">
+                                <span class="oppcioncontea">Historial</span>
+                            </span>
+                        </li>
+                        <li onclick="avisos();">
+                            <span class="oppcionfoto"><img src="imagen/centrotrabajo.svg" border="0"></span>
+                            <span class="oppcionconte">
+                                <span class="oppcioncontea">Avisos</span>
                             </span>
                         </li>
                     </ul>
@@ -92,7 +116,126 @@
             </div>
         </div>
     </div>
-    
+    <div id="fconte_2_1" class="fondoconte" style="display: none;">
+        <div class="barra">
+            <div class="barraconte">
+                <div class="cerrar">
+                    <img id="abrir_2_2_2" src="imagen/filtrar.svg" border="0">
+                    <img id="cerrar_2_1" src="imagen/cerrar.svg" border="0">
+                </div>
+            </div>
+        </div>
+        <div class="contenidos">
+            <div class="cabecera"><img src="imagen/buzzo.svg"><br><span>Técnico Cubetic Consultores</span></div>
+            <div class="titulo"><span>Proyectos</span><span class="subtitulo">Gestión de Proyectos</span></div>
+            <div id="fconte_2_1_contenido">
+                <div class="tituloempresa">Empresa de prueba</div>
+                <table class="gridtable" id="listadoproyectos">
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="fconte_2_2" class="fondoconte" style="display: none;">
+        <div class="barra">
+            <div class="barraconte">
+                <div class="cerrar">
+                    <img id="abrir_2_2_2" src="imagen/filtrar.svg" border="0">
+                    <img id="cerrar_2_2" src="imagen/cerrar.svg" border="0">
+                </div>
+            </div>
+        </div>
+        <div class="contenidos">
+            <div class="cabecera"><img src="imagen/buzzo.svg"><br><span>Técnico Cubetic Consultores</span></div>
+            <div class="titulo"><span>Partes</span><span class="subtitulo">Gestión de Proyectos</span></div>
+            <div id="fconte_2_2_contenido">
+                <div class="tituloempresa">Empresa de prueba</div>
+                <table class="gridtable" id="listadopartes">
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="fconte_2_3" class="fondoconte" style="display: none;">
+        <div class="barra">
+            <div class="barraconte">
+                <div class="cerrar">
+                    <img id="abrir_2_2_2" src="imagen/filtrar.svg" border="0">
+                    <img id="cerrar_2_3" src="imagen/cerrar.svg" border="0">
+                </div>
+            </div>
+        </div>
+        <div class="contenidos">
+            <div class="cabecera"><img src="imagen/buzzo.svg"><br><span>Técnico Cubetic Consultores</span></div>
+            <div class="titulo"><span>Clientes</span><span class="subtitulo">Gestión de Proyectos</span></div>
+            <div id="fconte_2_3_contenido">
+                <div class="tituloempresa">Empresa de prueba</div>
+                <table class="gridtable" id="listadotraclientes">
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="fconte_2_4" class="fondoconte" style="display: none;">
+        <div class="barra">
+            <div class="barraconte">
+                <div class="cerrar">
+                    <img id="abrir_2_2_2" src="imagen/filtrar.svg" border="0">
+                    <img id="cerrar_2_4" src="imagen/cerrar.svg" border="0">
+                </div>
+            </div>
+        </div>
+        <div class="contenidos">
+            <div class="cabecera"><img src="imagen/buzzo.svg"><br><span>Técnico Cubetic Consultores</span></div>
+            <div class="titulo"><span>Planificador</span><span class="subtitulo">Gestión de Proyectos</span></div>
+            <div id="fconte_2_4_contenido">
+                <div class="tituloempresa">Empresa de prueba</div>
+                <table class="gridtable" id="listadotraclientes">
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="fconte_2_5" class="fondoconte" style="display: none;">
+        <div class="barra">
+            <div class="barraconte">
+                <div class="cerrar">
+                    <img id="abrir_2_2_2" src="imagen/filtrar.svg" border="0">
+                    <img id="cerrar_2_5" src="imagen/cerrar.svg" border="0">
+                </div>
+            </div>
+        </div>
+        <div class="contenidos">
+            <div class="cabecera"><img src="imagen/buzzo.svg"><br><span>Técnico Cubetic Consultores</span></div>
+            <div class="titulo"><span>Historial</span><span class="subtitulo">Gestión de Proyectos</span></div>
+            <div id="fconte_2_5_contenido">
+                <div class="tituloempresa">Empresa de prueba</div>
+                <table class="gridtable" id="listadotraclientes">
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="fconte_2_6" class="fondoconte" style="display: none;">
+        <div class="barra">
+            <div class="barraconte">
+                <div class="cerrar">
+                    <img id="abrir_2_2_2" src="imagen/filtrar.svg" border="0">
+                    <img id="cerrar_2_6" src="imagen/cerrar.svg" border="0">
+                </div>
+            </div>
+        </div>
+        <div class="contenidos">
+            <div class="cabecera"><img src="imagen/buzzo.svg"><br><span>Técnico Cubetic Consultores</span></div>
+            <div class="titulo"><span>Avisos</span><span class="subtitulo">Gestión de Proyectos</span></div>
+            <div id="fconte_2_6_contenido">
+                <div class="tituloempresa">Empresa de prueba</div>
+                <table class="gridtable" id="listadotraclientes">
+
+                </table>
+            </div>
+        </div>
+    </div>
     <div id='menu'>
         <ul>
             <li>
