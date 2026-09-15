@@ -10,62 +10,6 @@ $('#cerrar_1_2').click(function () {
 });
 
 
-// Caché en JavaScript para datos SEO
-const cacheSeoPalabras = {};
-const cacheSeoHistorico = {};
-
-function obtenerCacheSeo(domain) {
-    if (cacheSeoPalabras[domain]) {
-        return cacheSeoPalabras[domain];
-    }
-    try {
-        const stored = sessionStorage.getItem('seo_cache_' + domain);
-        if (stored) {
-            const parsed = JSON.parse(stored);
-            cacheSeoPalabras[domain] = parsed;
-            return parsed;
-        }
-    } catch (e) {
-        // En caso de que sessionStorage no esté accesible
-    }
-    return null;
-}
-
-function guardarCacheSeo(domain, data) {
-    cacheSeoPalabras[domain] = data;
-    try {
-        sessionStorage.setItem('seo_cache_' + domain, JSON.stringify(data));
-    } catch (e) {
-        // Ignorar si el almacenamiento está restringido
-    }
-}
-
-function obtenerCacheHistorico(domain) {
-    if (cacheSeoHistorico[domain]) {
-        return cacheSeoHistorico[domain];
-    }
-    try {
-        const stored = sessionStorage.getItem('seo_historico_cache_' + domain);
-        if (stored) {
-            const parsed = JSON.parse(stored);
-            cacheSeoHistorico[domain] = parsed;
-            return parsed;
-        }
-    } catch (e) {
-        // En caso de que sessionStorage no esté accesible
-    }
-    return null;
-}
-
-function guardarCacheHistorico(domain, data) {
-    cacheSeoHistorico[domain] = data;
-    try {
-        sessionStorage.setItem('seo_historico_cache_' + domain, JSON.stringify(data));
-    } catch (e) {
-        // Ignorar si el almacenamiento está restringido
-    }
-}
-
 function pintarTablasSeo(response) {
     // Top 10 por volumen de búsqueda
     const $tablaVolumen = $('#listadovolumenbusqueda tbody');
@@ -346,18 +290,7 @@ function pintarGraficosSeo(response) {
 
 }
 
-function seopalabras(domain = "https://cafeteatrocentral.es") {
-    // 1. Comprobar si ya existen datos guardados en caché para este dominio
-    const datosEnCache = obtenerCacheSeo(domain);
-    if (datosEnCache) {
-        $("#fconte_1").hide();
-        $("#fconte_1_1").show();
-        pintarTablasSeo(datosEnCache);
-        pintarGraficosSeo(datosEnCache);
-        return;
-    }
-
-    // 2. Si no hay nada en caché, solicitar a la API
+function seopalabras(domain = "grupoforma.org") {
     $("#cargando").fadeIn("500", function () {
         $("#fconte_1").hide();
         $("#fconte_1_1").show();
@@ -370,10 +303,6 @@ function seopalabras(domain = "https://cafeteatrocentral.es") {
             },
             dataType: 'json',
             success: function (response) {
-                if (response && response.success) {
-                    // Guardar en caché para futuras consultas
-                    guardarCacheSeo(domain, response);
-                }
                 pintarTablasSeo(response);
                 pintarGraficosSeo(response);
             },
@@ -574,15 +503,7 @@ $(document).on('click', '.historico-periodo', function () {
     actualizarGraficoHistorico();
 });
 
-function seohistorico(domain = "https://cafeteatrocentral.es") {
-    const datosEnCache = obtenerCacheHistorico(domain);
-    if (datosEnCache) {
-        $("#fconte_1").hide();
-        $("#fconte_1_2").show();
-        pintarGraficosHistorico(datosEnCache);
-        return;
-    }
-
+function seohistorico(domain = "grupoforma.org") {
     $("#cargando").fadeIn("500", function () {
         $("#fconte_1").hide();
         $("#fconte_1_2").show();
@@ -596,7 +517,6 @@ function seohistorico(domain = "https://cafeteatrocentral.es") {
             dataType: 'json',
             success: function (response) {
                 if (response && response.success) {
-                    guardarCacheHistorico(domain, response);
                     pintarGraficosHistorico(response);
                     return;
                 }
