@@ -366,9 +366,8 @@ try {
             'organico' => $organico->obtenerOrganico(10),
         ];
 
-        // Las variables se actualizan en el ámbito externo cuando el archivo se incluye.
-        $fechaCache = date('c');
-        $datosCache = $datosSeo;
+        $fechaCacheSalida = date('Y-m-d');
+        $datosCacheSalida = $datosSeo;
     }
 
     $datosCompetencia = $datosSeo['competencia'] ?? [];
