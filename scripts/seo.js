@@ -290,7 +290,7 @@ function pintarGraficosSeo(response) {
 
 }
 
-function seopalabras(domain = "grupoforma.org") {
+function seopalabras(domain) {
     $("#cargando").fadeIn("500", function () {
         $("#fconte_1").hide();
         $("#fconte_1_1").show();
@@ -503,7 +503,7 @@ $(document).on('click', '.historico-periodo', function () {
     actualizarGraficoHistorico();
 });
 
-function seohistorico(domain = "grupoforma.org") {
+function seohistorico(domain) {
     $("#cargando").fadeIn("500", function () {
         $("#fconte_1").hide();
         $("#fconte_1_2").show();

@@ -341,24 +341,42 @@ class Organico extends ApiSeranking
     }
 }
 
-
 try {
     $apiKey = "f8f1935c-2ff4-84a6-471a-af8f241f8e8c";
     $domain = $_REQUEST['domain'];
+    // Límite de tiempo en segundos
+    $limiteTiempo = 7 * 24 * 60 * 60;
 
-    $competencia = new Competencia($apiKey, $domain);
-    $masTrafico = new MasTrafico($apiKey, $domain);
-    $volumenBusqueda = new VolumenBusqueda($apiKey, $domain);
-    $mejorPosicion = new MejorPosicion($apiKey, $domain);
-    $keyTrafico = new KeyTrafico($apiKey, $domain);
-    $organico = new Organico($apiKey, $domain);
+    if (!empty($fechaCache) && !empty($datosCache) && strtotime($fechaCache) > time() - $limiteTiempo) {
+        $datosSeo = $datosCache;
+    } else {
+        $competencia = new Competencia($apiKey, $domain);
+        $masTrafico = new MasTrafico($apiKey, $domain);
+        $volumenBusqueda = new VolumenBusqueda($apiKey, $domain);
+        $mejorPosicion = new MejorPosicion($apiKey, $domain);
+        $keyTrafico = new KeyTrafico($apiKey, $domain);
+        $organico = new Organico($apiKey, $domain);
 
-    $datosCompetencia = $competencia->obtenerCompetencia(10);
-    $datosMasTrafico = $masTrafico->obtenerMasTrafico(10);
-    $datosVolumenBusqueda = $volumenBusqueda->obtenerVolumenBusqueda(10);
-    $datosMejorPosicion = $mejorPosicion->obtenerMejorPosicion(10);
-    $datosKeyTrafico = $keyTrafico->obtenerKeyTrafico(10);
-    $datosOrganico = $organico->obtenerOrganico(10);
+        $datosSeo = [
+            'competencia' => $competencia->obtenerCompetencia(10),
+            'masTrafico' => $masTrafico->obtenerMasTrafico(10),
+            'volumenBusqueda' => $volumenBusqueda->obtenerVolumenBusqueda(10),
+            'mejorPosicion' => $mejorPosicion->obtenerMejorPosicion(10),
+            'keyTrafico' => $keyTrafico->obtenerKeyTrafico(10),
+            'organico' => $organico->obtenerOrganico(10),
+        ];
+
+        // Las variables se actualizan en el ámbito externo cuando el archivo se incluye.
+        $fechaCache = date('c');
+        $datosCache = $datosSeo;
+    }
+
+    $datosCompetencia = $datosSeo['competencia'] ?? [];
+    $datosMasTrafico = $datosSeo['masTrafico'] ?? [];
+    $datosVolumenBusqueda = $datosSeo['volumenBusqueda'] ?? [];
+    $datosMejorPosicion = $datosSeo['mejorPosicion'] ?? [];
+    $datosKeyTrafico = $datosSeo['keyTrafico'] ?? [];
+    $datosOrganico = $datosSeo['organico'] ?? [];
 
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode([

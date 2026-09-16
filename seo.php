@@ -40,8 +40,8 @@
                             <span class="serviciocontea">Empresa de Prueba</span>
                             <span class="servicioconteb">Estado: Finalizado - Caducidad: XXXX-XX-XX</span>
                             <span class="servicioconteopciones">
-                                <span class="servicioconteopcion"><img title="Estadisticas" alt="Estadisticas" onclick="seopalabras();" border="0" src="imagen/estadisticas.png"></span>
-                                <span class="servicioconteopcion"><img title="Historico" alt="Historico" onclick="seohistorico();" border="0" src="imagen/historico.png"></span>
+                                <span class="servicioconteopcion"><img title="Estadisticas" alt="Estadisticas" onclick="seopalabras('https://cafeteatrocentral.es');" border="0" src="imagen/estadisticas.png"></span>
+                                <span class="servicioconteopcion"><img title="Historico" alt="Historico" onclick="seohistorico('https://cafeteatrocentral.es');" border="0" src="imagen/historico.png"></span>
                             </span>
                         </span>
                     </li>
