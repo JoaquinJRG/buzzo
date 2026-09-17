@@ -406,7 +406,6 @@ function pintarResumenHistorico(response) {
 }
 
 function pintarGraficosHistorico(response) {
-    console.log('Datos históricos recibidos:', response);
     response = response || {};
     pintarResumenHistorico(response);
     const organico = Array.isArray(response.historicoOrganico) ? response.historicoOrganico : [];
