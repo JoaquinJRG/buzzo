@@ -130,6 +130,15 @@ function pintarGraficosSeo(response) {
     Chart.defaults.font.size = 10;
     Chart.defaults.plugins.legend.position = 'bottom';
 
+    ['graficoVolumenBusqueda', 'graficoOrganico', 'graficoTrafico', 'graficoCompetencia']
+        .forEach(function (id) {
+            const canvas = document.getElementById(id);
+            const graficoExistente = canvas ? Chart.getChart(canvas) : null;
+            if (graficoExistente) {
+                graficoExistente.destroy();
+            }
+        });
+
     // Top 10 por volumen de búsqueda
     const graficoVolumen = $('#graficoVolumenBusqueda');
 

@@ -153,6 +153,15 @@
 	height:100% !important;
 }
 
+#fconte_1_1 .barra{
+	z-index:1000;
+}
+
+#fconte_1_1 .cerrar{
+	position:relative;
+	z-index:1001;
+}
+
 .seo-titulo-ayuda{
 	display:flex !important;
 	align-items:center;
