@@ -1,0 +1,71 @@
+/* Layout específico del formulario DeCa. Los controles base viven en estinicio.css. */
+.formulario #formularioemisiondeca {
+  max-width: 58em;
+}
+
+.formulario fieldset {
+  margin-bottom: 1em;
+}
+
+.formulario fieldset:first-child {
+  margin-top: 0;
+}
+
+.deca-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1em;
+}
+
+.deca-bloque,
+.deca-envio {
+  background: rgba(15, 34, 52, 0.08);
+  border-left: 3px solid #488dff;
+  padding: 0.25em 0.5em;
+}
+
+.deca-bloque h3,
+.deca-envio h3 {
+  color: #3175df;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 1.05em;
+  margin: 0.35em 0;
+}
+
+.deca-bloque h3 small,
+.deca-envio small,
+.formulario label small {
+  font-size: 0.8em;
+  font-weight: 400;
+}
+
+.deca-campos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.deca-campos-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.deca-envio {
+  margin-bottom: 1em;
+}
+
+.deca-ayuda {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 0.85em;
+  margin: 0 0.5em;
+}
+
+.deca-envio:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 42em) {
+  .deca-grid,
+  .deca-campos,
+  .deca-campos-3 {
+    grid-template-columns: 1fr;
+  }
+}
