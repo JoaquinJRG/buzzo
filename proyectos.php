@@ -7,6 +7,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="css/seo.css">
+    <link rel="stylesheet" href="css/proyectos.css">
     <link href='css/estinicio.css?v=5.76' rel='stylesheet' type='text/css'>
     <link href='css/jquery-ui.min.css' rel='stylesheet' type='text/css'>
     <link rel='icon' type='image/png' href='imagen/fav16x16.png' sizes='16x16' />
@@ -35,7 +36,7 @@
             <div class='titulo'>Gestión de Proyectos</div>
             <div class="empresas">
                 <ul>
-                    <li onclick="empresa()">
+                    <li onclick="empresa('empresa_prueba_01', 'Empresa de Prueba')">
                         <span class="empresafoto"><img src="imagen/empresa.jpg" border="0"></span>
                         <span class="empresaconte">
                             <span class="empresacontea">Empresa de Prueba</span>
@@ -43,7 +44,7 @@
                             <span class="empresacontec">8006 BARCELONA (BARCELONA)</span> </span>
                         <span class="empresacciones"><img src="imagen/editar.svg" border="0"></span>
                     </li>
-                    <li onclick="empresa()">
+                    <li onclick="empresa('empresa_prueba_02', 'Empresa de Prueba 2')">
                         <span class="empresafoto"><img src="imagen/empresa.jpg" border="0"></span>
                         <span class="empresaconte">
                             <span class="empresacontea">Empresa de Prueba 2</span>
@@ -76,37 +77,37 @@
                 <div class="oppciones">
                     <ul>
                         <li onclick="proyectos();">
-                            <span class="oppcionfoto"><img src="imagen/trabajadores.svg" border="0"></span>
+                            <span class="oppcionfoto"><img src="imagen/proyectos.png" border="0"></span>
                             <span class="oppcionconte">
                                 <span class="oppcioncontea">Proyectos</span>
                             </span>
                         </li>
                         <li onclick="partes();">
-                            <span class="oppcionfoto"><img src="imagen/centrotrabajo.svg" border="0"></span>
+                            <span class="oppcionfoto"><img src="imagen/partes.png" border="0"></span>
                             <span class="oppcionconte">
                                 <span class="oppcioncontea">Partes</span>
                             </span>
                         </li>
                         <li onclick="clientes();">
-                            <span class="oppcionfoto"><img src="imagen/centrotrabajo.svg" border="0"></span>
+                            <span class="oppcionfoto"><img src="imagen/clientes.png" border="0"></span>
                             <span class="oppcionconte">
                                 <span class="oppcioncontea">Clientes</span>
                             </span>
                         </li>
                         <li onclick="planificador();">
-                            <span class="oppcionfoto"><img src="imagen/centrotrabajo.svg" border="0"></span>
+                            <span class="oppcionfoto"><img src="imagen/planificador.png" border="0"></span>
                             <span class="oppcionconte">
                                 <span class="oppcioncontea">Planificador</span>
                             </span>
                         </li>
                         <li onclick="historial();">
-                            <span class="oppcionfoto"><img src="imagen/centrotrabajo.svg" border="0"></span>
+                            <span class="oppcionfoto"><img src="imagen/historial.png" border="0"></span>
                             <span class="oppcionconte">
                                 <span class="oppcioncontea">Historial</span>
                             </span>
                         </li>
                         <li onclick="avisos();">
-                            <span class="oppcionfoto"><img src="imagen/centrotrabajo.svg" border="0"></span>
+                            <span class="oppcionfoto"><img src="imagen/avisos.png" border="0"></span>
                             <span class="oppcionconte">
                                 <span class="oppcioncontea">Avisos</span>
                             </span>
@@ -130,9 +131,7 @@
             <div class="titulo"><span>Proyectos</span><span class="subtitulo">Gestión de Proyectos</span></div>
             <div id="fconte_2_1_contenido">
                 <div class="tituloempresa">Empresa de prueba</div>
-                <table class="gridtable" id="listadoproyectos">
-
-                </table>
+                <div class="proyectos-lista" id="listadoproyectos"></div>
             </div>
         </div>
     </div>
@@ -190,7 +189,7 @@
             <div class="titulo"><span>Planificador</span><span class="subtitulo">Gestión de Proyectos</span></div>
             <div id="fconte_2_4_contenido">
                 <div class="tituloempresa">Empresa de prueba</div>
-                <table class="gridtable" id="listadotraclientes">
+                <table class="gridtable" id="listadoplanificador">
 
                 </table>
             </div>
@@ -210,7 +209,7 @@
             <div class="titulo"><span>Historial</span><span class="subtitulo">Gestión de Proyectos</span></div>
             <div id="fconte_2_5_contenido">
                 <div class="tituloempresa">Empresa de prueba</div>
-                <table class="gridtable" id="listadotraclientes">
+                <table class="gridtable" id="listadohistorial">
 
                 </table>
             </div>
@@ -230,7 +229,7 @@
             <div class="titulo"><span>Avisos</span><span class="subtitulo">Gestión de Proyectos</span></div>
             <div id="fconte_2_6_contenido">
                 <div class="tituloempresa">Empresa de prueba</div>
-                <table class="gridtable" id="listadotraclientes">
+                <table class="gridtable" id="listadoavisos">
 
                 </table>
             </div>
