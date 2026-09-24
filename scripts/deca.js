@@ -57,3 +57,41 @@ $.datepicker.regional['es'] = {
     yearSuffix: ''
 };
 $.datepicker.setDefaults($.datepicker.regional['es']);
+
+$('#decafecha, #empresalogsdesde, #empresalogshasta').datepicker({
+    changeMonth: true,
+    changeYear: true
+});
+
+$('#decaaddenvio').click(function () {
+    var $ultimoEnvio = $('#formularioemisiondeca fieldset[id^="deca-envio-"]').last();
+    var numeroEnvio = $('#formularioemisiondeca fieldset[id^="deca-envio-"]').length + 1;
+    var $nuevoEnvio = $ultimoEnvio.clone();
+
+    $nuevoEnvio.attr('id', 'deca-envio-' + numeroEnvio);
+    $nuevoEnvio.find('legend').text('Envío ' + numeroEnvio);
+
+    $nuevoEnvio.find('[id]').each(function () {
+        var id = $(this).attr('id');
+        $(this).attr('id', id + '-' + numeroEnvio);
+    });
+
+    $nuevoEnvio.find('label[for]').each(function () {
+        var forId = $(this).attr('for');
+        $(this).attr('for', forId + '-' + numeroEnvio);
+    });
+
+    $nuevoEnvio.find('[name]').each(function () {
+        var name = $(this).attr('name');
+        $(this).attr('name', name + '_' + numeroEnvio);
+    });
+
+    $nuevoEnvio.find('.hasDatepicker').removeClass('hasDatepicker');
+    $nuevoEnvio.insertBefore($('#formularioemisiondeca .botones'));
+
+    $nuevoEnvio.find('input, select').val('');
+    $nuevoEnvio.find('input[id^="decafecha-"]').datepicker({
+        changeMonth: true,
+        changeYear: true
+    });
+});

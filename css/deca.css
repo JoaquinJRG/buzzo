@@ -19,7 +19,6 @@
 
 .deca-bloque,
 .deca-envio {
-  background: rgba(15, 34, 52, 0.08);
   border-left: 3px solid #488dff;
   padding: 0.25em 0.5em;
 }
@@ -60,6 +59,65 @@
 
 .deca-envio:last-child {
   margin-bottom: 0;
+}
+
+#formularioemisiondeca > .botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+#formularioemisiondeca > .botones .boton {
+  margin-left: 0;
+}
+
+.deca-agenda {
+  background: rgba(255,255,255,0.75);
+  padding: 0.5em;
+  text-align: left;
+}
+
+.deca-agenda-ayuda,
+.deca-agenda-estado {
+  font-family: 'PT Sans Narrow', sans-serif;
+  margin: 0.75em 0;
+}
+
+.deca-agenda-categorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  margin: 0.75em 0;
+}
+
+.deca-agenda-categoria {
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(49, 84, 119, 0.2);
+  border-radius: 1em;
+  color: #315477;
+  cursor: pointer;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 1em;
+  padding: 0.45em 0.8em;
+}
+
+.deca-agenda-categoria-activa,
+.deca-agenda-categoria:hover {
+  background: #488dff;
+  border-color: #488dff;
+  color: #fff;
+}
+
+.deca-agenda-acciones {
+  text-align: left;
+}
+
+.deca-agenda-acciones .boton {
+  margin-left: 0;
+}
+
+.deca-agenda-estado {
+  margin-top: 2em;
 }
 
 @media (max-width: 42em) {

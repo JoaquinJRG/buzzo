@@ -41,10 +41,9 @@
                             <span class="serviciocontea">Empresa de Prueba</span>
                             <span class="servicioconteb">Estado: Finalizado - Caducidad: XXXX-XX-XX</span>
                             <span class="servicioconteopciones">
-                                <span class="servicioconteopcion"><img title="Emitir deca" alt="Emitir deca" onclick="emitirDeca()" border="0" src="imagen/"></span>
-                                <span class="servicioconteopcion"><img title="Mis deca" alt="Mis deca" onclick="misDeca()" border="0" src="imagen/"></span>
-                                <span class="servicioconteopcion"><img title="Deca de terceros" alt="Deca de terceros" onclick="decaTerceros()" border="0" src="imagen/"></span>
-                                <span class="servicioconteopcion"><img title="Mis agenda" alt="Mis agendas" onclick="miAgenda()" border="0" src="imagen/"></span>
+                                <span class="servicioconteopcion"><img title="Emitir DeCa" alt="Emitir DeCa" onclick="emitirDeca()" border="0" src="imagen/emitirdeca.png"></span>
+                                <span class="servicioconteopcion"><img title="Mis DeCa" alt="Mis DeCa" onclick="misDeca()" border="0" src="imagen/misdeca.png"></span>
+                                <span class="servicioconteopcion"><img title="Mi agenda" alt="Mi agenda" onclick="miAgenda()" border="0" src="imagen/miagenda.png"></span>
                             </span>
                         </span>
                     </li>
@@ -128,7 +127,10 @@
                         <fieldset>
                             <legend>Conductor</legend>
                             <div class="deca-campos">
-                                <div class="campocon"><label for="decaconductoragenda">De mi agenda</label><select id="decaconductoragenda" name="decaconductoragenda" class="campo"><option value="">— Escribir a mano —</option><option value="mis-datos">Mis datos</option></select></div>
+                                <div class="campocon"><label for="decaconductoragenda">De mi agenda</label><select id="decaconductoragenda" name="decaconductoragenda" class="campo">
+                                        <option value="">— Escribir a mano —</option>
+                                        <option value="mis-datos">Mis datos</option>
+                                    </select></div>
                                 <div class="campocon"><label for="decaconductornombre">Nombre completo *</label><input id="decaconductornombre" name="decaconductornombre" class="campo" type="text" required></div>
                             </div>
                             <div class="deca-campos deca-campos-3">
@@ -147,11 +149,13 @@
                             <div class="campocon"><label for="decaautorizacion">Autorización especial de circulación <small>(opcional)</small></label><input id="decaautorizacion" name="decaautorizacion" class="campo" type="text"></div>
                         </fieldset>
 
-                        <fieldset>
+                        <fieldset id="deca-envio-1">
                             <legend>Envío 1</legend>
                             <div class="deca-envio">
                                 <h3>Origen</h3>
-                                <div class="campocon"><label for="decaorigenagenda">De mi agenda</label><select id="decaorigenagenda" name="decaorigenagenda" class="campo"><option value="">— Escribir a mano —</option></select></div>
+                                <div class="campocon"><label for="decaorigenagenda">De mi agenda</label><select id="decaorigenagenda" name="decaorigenagenda" class="campo">
+                                        <option value="">— Escribir a mano —</option>
+                                    </select></div>
                                 <div class="campocon"><label for="decaorigenempresa">Nombre de la empresa <small>(opcional)</small></label><input id="decaorigenempresa" name="decaorigenempresa" class="campo" type="text"></div>
                                 <div class="deca-campos">
                                     <div class="campocon"><label for="decaorigenvia">Vía *</label><input id="decaorigenvia" name="decaorigenvia" class="campo" type="text" required></div>
@@ -164,7 +168,9 @@
                             </div>
                             <div class="deca-envio">
                                 <h3>Destino</h3>
-                                <div class="campocon"><label for="decadestinoagenda">De mi agenda</label><select id="decadestinoagenda" name="decadestinoagenda" class="campo"><option value="">— Escribir a mano —</option></select></div>
+                                <div class="campocon"><label for="decadestinoagenda">De mi agenda</label><select id="decadestinoagenda" name="decadestinoagenda" class="campo">
+                                        <option value="">— Escribir a mano —</option>
+                                    </select></div>
                                 <div class="campocon"><label for="decadestinoempresa">Nombre de la empresa <small>(opcional)</small></label><input id="decadestinoempresa" name="decadestinoempresa" class="campo" type="text"></div>
                                 <div class="deca-campos">
                                     <div class="campocon"><label for="decadestinovia">Vía *</label><input id="decadestinovia" name="decadestinovia" class="campo" type="text" required></div>
@@ -184,10 +190,11 @@
                                     <div class="campocon"><label for="decabultos">Bultos</label><input id="decabultos" name="decabultos" class="campo" type="number" min="0" step="1"></div>
                                     <div class="campocon"><label for="decavolumen">Volumen (m³)</label><input id="decavolumen" name="decavolumen" class="campo" type="number" min="0" step="0.01"></div>
                                 </div>
-                                <div class="campocon"><label for="decafecha">Fecha efectiva del servicio *</label><input id="decafecha" name="decafecha" class="campo" type="date" required></div>
+                                <div class="campocon"><label for="decafecha">Fecha efectiva del servicio *</label><input id="decafecha" name="decafecha" class="campo" type="text" value="" maxlength="10" autocomplete="off" required></div>
                             </div>
                         </fieldset>
                         <div class="botones">
+                            <button id="decaaddenvio" name="decaaddenvio" type="button" value="Añadir otro envío" class="boton">Añadir otro envío</button>
                             <button id="decaenvio" name="decaenvio" type="submit" value="Emitir" class="boton">Emitir DeCa</button>
                         </div>
                     </form>
@@ -217,41 +224,38 @@
                 <div class="formulario">
 
                     <form id="formularioempresalogs" name="formularioempresalogs" method="post" action="mod_empresas2.php">
-
-                        <div class="campocon"><label for="empresalogsdesde">Desde *</label><input id="empresalogsdesde" name="empresalogsdesde" class="campo hasDatepicker" type="text" value="2026-09-16" maxlength="10"></div>
-                        <div class="campocon"><label for="empresalogshasta">Hasta *</label><input id="empresalogshasta" name="empresalogshasta" class="campo hasDatepicker" type="text" value="2026-09-23" maxlength="10"></div>
-
-                        <input id="empresalogsidentif" name="empresalogsidentif" type="hidden" value="nbngiubd3fvbj6b473nfd3nvdg">
-                        <input id="empresalogsidentib" name="empresalogsidentib" type="hidden" value="f414624d5aeab684d6cb8ae54e318065">
-                        <input id="empresalogscualo" name="empresalogscualo" type="hidden" value="1758">
+                        <fieldset>
+                            <legend>Filtros de búsqueda</legend>
+                            <div class="deca-campos">
+                                <div class="campocon">
+                                    <label for="empresalogsdesde">Desde</label>
+                                    <input id="empresalogsdesde" name="empresalogsdesde" class="campo" type="text" value="" maxlength="10" autocomplete="off" placeholder="dd/mm/aaaa">
+                                </div>
+                                <div class="campocon">
+                                    <label for="empresalogshasta">Hasta</label>
+                                    <input id="empresalogshasta" name="empresalogshasta" class="campo" type="text" value="" maxlength="10" autocomplete="off" placeholder="dd/mm/aaaa">
+                                </div>
+                            </div>
+                            <div class="deca-campos">
+                                <div class="campocon">
+                                    <label for="empresalogscontraparte">Contraparte</label>
+                                    <select id="empresalogscontraparte" name="empresalogscontraparte" class="campo">
+                                        <option value="">Todas</option>
+                                    </select>
+                                </div>
+                                <div class="campocon">
+                                    <label for="empresalogsmatricula">Matrícula</label>
+                                    <input id="empresalogsmatricula" name="empresalogsmatricula" class="campo" type="text" placeholder="Matrícula...">
+                                </div>
+                            </div>
+                        </fieldset>
                         <div class="botones">
-                            <button id="empresalogsenvio" name="empresalogsenvio" type="button" value="Buscar" class="boton" onclick="empresalogs(1758);">Buscar</button>
+                            <button id="empresalogsenvio" name="empresalogsenvio" type="button" value="Buscar" class="boton">Buscar</button>
+                            <button id="empresalogsvertodos" name="empresalogsvertodos" type="button" value="Ver todos" class="boton">Ver todos</button>
                         </div>
                     </form>
 
                 </div>
-            </div>
-        </div>
-    </div>
-    <div id="fconte_1_3" class="fondoconte" style="display:none;">
-        <div class="barra">
-            <div class="barraconte">
-                <div class="cerrar">
-                    <img id="cerrar_1_3" src="imagen/cerrar.svg" border="0">
-                </div>
-            </div>
-        </div>
-        <div class="contenidos">
-            <div class="cabecera">
-                <img src="imagen/buzzo.svg"><br>
-                <span>Técnico Cubetic Consultores</span>
-            </div>
-            <div class="titulo">
-                <span>DeCa activos de terceros</span>
-                <span class="subtitulo">DeCa</span>
-            </div>
-            <div id="fconte_1_3_contenido">
-                <div class="tituloempresa">Empresa de Prueba</div>
             </div>
         </div>
     </div>
@@ -272,8 +276,22 @@
                 <span>Mi agenda</span>
                 <span class="subtitulo">DeCa</span>
             </div>
-            <div id="fconte_1_3_contenido">
+            <div id="fconte_1_4_contenido">
                 <div class="tituloempresa">Empresa de Prueba</div>
+                <div class="deca-agenda">
+                    <p class="deca-agenda-ayuda">Guarda tus datos para ahorrarte repetir texto.</p>
+                    <div class="deca-agenda-categorias" role="tablist" aria-label="Categorías de la agenda">
+                        <button id="decaagendacontrapartes" name="decaagendacontrapartes" type="button" class="deca-agenda-categoria deca-agenda-categoria-activa" role="tab" aria-selected="true">Contrapartes (0)</button>
+                        <button id="decaagendadirecciones" name="decaagendadirecciones" type="button" class="deca-agenda-categoria" role="tab" aria-selected="false">Direcciones (0)</button>
+                        <button id="decaagendavehiculos" name="decaagendavehiculos" type="button" class="deca-agenda-categoria" role="tab" aria-selected="false">Vehículos (0)</button>
+                        <button id="decaagendaconductores" name="decaagendaconductores" type="button" class="deca-agenda-categoria" role="tab" aria-selected="false">Conductores (0)</button>
+                        <button id="decaagendaautorizaciones" name="decaagendaautorizaciones" type="button" class="deca-agenda-categoria" role="tab" aria-selected="false">Autorizaciones (0)</button>
+                    </div>
+                    <div class="botones deca-agenda-acciones">
+                        <button id="decaagendaaddcontraparte" name="decaagendaaddcontraparte" type="button" value="Añadir contraparte" class="boton">Añadir contraparte</button>
+                    </div>
+                    <p id="decaagendaestado" class="deca-agenda-estado">Todavía no tienes contrapartes.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -366,7 +384,6 @@
             <div>Procesando....</div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
     <script src='scripts/deca.js' type='text/javascript'></script>
     <script src='scripts/final.js' type='text/javascript'></script>
 </body>
