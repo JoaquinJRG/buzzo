@@ -1,4 +1,4 @@
-/* Layout específico del formulario DeCa. Los controles base viven en estinicio.css. */
+
 .formulario #formularioemisiondeca {
   max-width: 58em;
 }
@@ -19,7 +19,6 @@
 
 .deca-bloque,
 .deca-envio {
-  border-left: 3px solid #488dff;
   padding: 0.25em 0.5em;
 }
 

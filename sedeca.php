@@ -3,10 +3,9 @@
 
 <head>
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-    <title>Buzzo - SEO</title>
+    <title>Buzzo - DeCa</title>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="stylesheet" href="css/seo.css">
     <link rel="stylesheet" href="css/deca.css">
     <link href='css/estinicio.css?v=5.76' rel='stylesheet' type='text/css'>
     <link href='css/jquery-ui.min.css' rel='stylesheet' type='text/css'>
@@ -637,7 +636,7 @@
             <li>
                 <a href='sedeca.php' class='menuboton'>
                     <span class='menuicono'>
-                        <img src='imagen/seo.png' border='0' />
+                        <img src='imagen/sedeca.png' border='0' />
                     </span>
                     <span class='menutextocon'>
                         <span class='menutexto'>DeCa</span>
