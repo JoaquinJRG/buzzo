@@ -11,9 +11,9 @@ class ApiDeca
 
     public function __construct(
         string $baseUrl = 'https://dev.api.cubetic.cloud',
-        string $clientId = '01M2HY5Z0A5MK3EPEY42Z1GRSG',
-        string $keyId = '01M2HY5Z1RZQNDD4JQPS8YY4FZ',
-        string $secret = 'ZCbxsRYAeOujhdWNd16E6xbJrMpPXXuOs3of_CHV-Co'
+        string $clientId = '01M3ANRZHJ7HXH9B2MVDQFXTPE',
+        string $keyId = '01M3ANRZJYCK12DTGQE6KWV4CM',
+        string $secret = 'NJKmMjZu2IpTtDM3_837SMY_ZFoXKhynFKQhSizdyDo'
     ) {
         $this->baseUrl = rtrim($baseUrl, '/');
         $this->clientId = $clientId;
@@ -78,7 +78,8 @@ class ApiDeca
         string $userId,
         array $scopes,
         $body = null,
-        array $queryParams = []
+        array $queryParams = [],
+        array $additionalHeaders = []
     ): array {
         $method = strtoupper($method);
 
@@ -135,6 +136,9 @@ class ApiDeca
             'X-Buzzo-Context: ' . $contextString,
             'X-Buzzo-Signature: ' . $signature,
         ];
+        foreach ($additionalHeaders as $header) {
+            $headers[] = $header;
+        }
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -193,7 +197,7 @@ class ApiDeca
         );
     }
 
-    public function provisionService(string $companyId, string $serviceCode = 'project-management', array $data = ['status' => 'active']): array
+    public function provisionService(string $companyId, string $serviceCode, array $data = ['status' => 'active']): array
     {
         return $this->request(
             'PUT',
@@ -535,7 +539,7 @@ class ApiDeca
         );
     }
 
-    public function createAgendaCounterpart(string $companyId, string $userId, array $data): array
+    public function createAgendaCounterpart(string $companyId, string $userId, array $data, ?string $idempotencyKey = null): array
     {
         return $this->request(
             'POST',
@@ -543,7 +547,9 @@ class ApiDeca
             $companyId,
             $userId,
             ['tc.agenda.manage'],
-            $data
+            $data,
+            [],
+            ['Idempotency-Key: ' . ($idempotencyKey ?? bin2hex(random_bytes(16)))]
         );
     }
 
@@ -594,7 +600,7 @@ class ApiDeca
         );
     }
 
-    public function createAgendaAddress(string $companyId, string $userId, array $data): array
+    public function createAgendaAddress(string $companyId, string $userId, array $data, ?string $idempotencyKey = null): array
     {
         return $this->request(
             'POST',
@@ -602,7 +608,9 @@ class ApiDeca
             $companyId,
             $userId,
             ['tc.agenda.manage'],
-            $data
+            $data,
+            [],
+            ['Idempotency-Key: ' . ($idempotencyKey ?? bin2hex(random_bytes(16)))]
         );
     }
 
@@ -653,7 +661,7 @@ class ApiDeca
         );
     }
 
-    public function createAgendaVehicle(string $companyId, string $userId, array $data): array
+    public function createAgendaVehicle(string $companyId, string $userId, array $data, ?string $idempotencyKey = null): array
     {
         return $this->request(
             'POST',
@@ -661,7 +669,9 @@ class ApiDeca
             $companyId,
             $userId,
             ['tc.agenda.manage'],
-            $data
+            $data,
+            [],
+            ['Idempotency-Key: ' . ($idempotencyKey ?? bin2hex(random_bytes(16)))]
         );
     }
 
@@ -712,7 +722,7 @@ class ApiDeca
         );
     }
 
-    public function createAgendaDriver(string $companyId, string $userId, array $data): array
+    public function createAgendaDriver(string $companyId, string $userId, array $data, ?string $idempotencyKey = null): array
     {
         return $this->request(
             'POST',
@@ -720,7 +730,9 @@ class ApiDeca
             $companyId,
             $userId,
             ['tc.agenda.manage'],
-            $data
+            $data,
+            [],
+            ['Idempotency-Key: ' . ($idempotencyKey ?? bin2hex(random_bytes(16)))]
         );
     }
 
@@ -771,7 +783,7 @@ class ApiDeca
         );
     }
 
-    public function createAgendaAuthorization(string $companyId, string $userId, array $data): array
+    public function createAgendaAuthorization(string $companyId, string $userId, array $data, ?string $idempotencyKey = null): array
     {
         return $this->request(
             'POST',
@@ -779,7 +791,9 @@ class ApiDeca
             $companyId,
             $userId,
             ['tc.agenda.manage'],
-            $data
+            $data,
+            [],
+            ['Idempotency-Key: ' . ($idempotencyKey ?? bin2hex(random_bytes(16)))]
         );
     }
 
@@ -817,102 +831,5 @@ class ApiDeca
         );
     }
 
-    // Backwards-compatible aliases for legacy Project Management naming.
-    public function getProjects(string $companyId, string $userId, array $queryParams = []): array
-    {
-        return $this->listOperations($companyId, $userId, $queryParams);
-    }
-
-    public function getProject(string $companyId, string $userId, string $publicId): array
-    {
-        return $this->getOperation($companyId, $userId, $publicId);
-    }
-
-    public function createProject(string $companyId, string $userId, array $data): array
-    {
-        return $this->createOperation($companyId, $userId, $data);
-    }
-
-    public function updateProject(string $companyId, string $userId, string $publicId, array $data): array
-    {
-        return $this->updateOperation($companyId, $userId, $publicId, $data);
-    }
-
-    public function archiveProject(string $companyId, string $userId, string $publicId): array
-    {
-        return $this->request(
-            'DELETE',
-            "/api/v1/transport-compliance/operations/{$publicId}",
-            $companyId,
-            $userId,
-            ['tc.operations.manage']
-        );
-    }
-
-    public function getClients(string $companyId, string $userId, array $queryParams = []): array
-    {
-        return $this->listAgendaCounterparts($companyId, $userId, $queryParams);
-    }
-
-    public function getClient(string $companyId, string $userId, string $publicId): array
-    {
-        return $this->getAgendaCounterpart($companyId, $userId, $publicId);
-    }
-
-    public function createClient(string $companyId, string $userId, array $data): array
-    {
-        return $this->createAgendaCounterpart($companyId, $userId, $data);
-    }
-
-    public function getTasks(string $companyId, string $userId, array $queryParams = []): array
-    {
-        return $this->listAgendaDrivers($companyId, $userId, $queryParams);
-    }
-
-    public function getWorkReports(string $companyId, string $userId, array $queryParams = []): array
-    {
-        $operationId = $queryParams['operation_id'] ?? '';
-        if ($operationId === '') {
-            return $this->listOperations($companyId, $userId, $queryParams);
-        }
-
-        return $this->listOperationVersions($companyId, $userId, $operationId, $queryParams);
-    }
-
-    public function getPlanning(string $companyId, string $userId, array $queryParams = []): array
-    {
-        return $this->getAgendaSummary($companyId, $userId, $queryParams);
-    }
-
-    public function getNotices(string $companyId, string $userId, array $queryParams = []): array
-    {
-        return $this->listPartyDocuments($companyId, $userId, $queryParams);
-    }
-
-    public function getReportHoursByProject(string $companyId, string $userId, string $from, string $to, array $queryParams = []): array
-    {
-        $queryParams['from'] = $from;
-        $queryParams['to'] = $to;
-
-        return $this->listOperations($companyId, $userId, $queryParams);
-    }
-
-    public function getReportHoursByWorker(string $companyId, string $userId, string $from, string $to, array $queryParams = []): array
-    {
-        $queryParams['from'] = $from;
-        $queryParams['to'] = $to;
-
-        return $this->listOperations($companyId, $userId, $queryParams);
-    }
-
-    public function createNotice(string $companyId, string $userId, array $data): array
-    {
-        return $this->createOperation($companyId, $userId, $data);
-    }
-
-    public function createPlanning(string $companyId, string $userId, array $data): array
-    {
-        return $this->createAgendaCounterpart($companyId, $userId, $data);
-    }
+    
 }
-

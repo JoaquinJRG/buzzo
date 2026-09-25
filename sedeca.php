@@ -142,10 +142,17 @@
                         <fieldset>
                             <legend>Vehículo</legend>
                             <div class="deca-campos">
+                                <div class="campocon"><label for="decatractoragenda">Tractor de mi agenda</label><select id="decatractoragenda" name="decatractoragenda" class="campo"><option value="">— Escribir a mano —</option></select></div>
+                                <div class="campocon"><label for="decaremolqueagenda">Remolque de mi agenda</label><select id="decaremolqueagenda" name="decaremolqueagenda" class="campo"><option value="">— Escribir a mano —</option></select></div>
+                            </div>
+                            <div class="deca-campos">
                                 <div class="campocon"><label for="decamatriculatractor">Matrícula (tractor) *</label><input id="decamatriculatractor" name="decamatriculatractor" class="campo" type="text" required></div>
                                 <div class="campocon"><label for="decamatricularemolque">Matrícula remolque <small>(opcional)</small></label><input id="decamatricularemolque" name="decamatricularemolque" class="campo" type="text"></div>
                             </div>
-                            <div class="campocon"><label for="decaautorizacion">Autorización especial de circulación <small>(opcional)</small></label><input id="decaautorizacion" name="decaautorizacion" class="campo" type="text"></div>
+                            <div class="deca-campos">
+                                <div class="campocon"><label for="decaautorizacionagenda">Autorización de mi agenda</label><select id="decaautorizacionagenda" name="decaautorizacionagenda" class="campo"><option value="">— Escribir a mano —</option></select></div>
+                                <div class="campocon"><label for="decaautorizacion">Autorización especial de circulación <small>(opcional)</small></label><input id="decaautorizacion" name="decaautorizacion" class="campo" type="text"></div>
+                            </div>
                         </fieldset>
 
                         <fieldset id="deca-envio-1">
@@ -417,6 +424,12 @@
                                     <div class="campomarca"><label><input name="deca-tractora-propiedad" type="radio" value="propio" checked> Mío</label></div>
                                     <div class="campomarca"><label><input name="deca-tractora-propiedad" type="radio" value="contraparte"> De una contraparte</label></div>
                                 </fieldset>
+                                <div class="campocon">
+                                    <label for="deca-tractora-contraparte">Contraparte</label>
+                                    <select id="deca-tractora-contraparte" class="campo">
+                                        <option value="">— Selecciona una contraparte —</option>
+                                    </select>
+                                </div>
                                 <p>¿Quién conduce este vehículo? Añádelo en la pestaña Conductores y podrás asignarlo aquí.</p>
                                 <div class="botones">
                                     <button type="submit" class="boton">Guardar</button>
@@ -461,6 +474,12 @@
                                     <div class="campomarca"><label><input name="deca-remolque-propiedad" type="radio" value="propio" checked> Mío</label></div>
                                     <div class="campomarca"><label><input name="deca-remolque-propiedad" type="radio" value="contraparte"> De una contraparte</label></div>
                                 </fieldset>
+                                <div class="campocon">
+                                    <label for="deca-remolque-contraparte">Contraparte</label>
+                                    <select id="deca-remolque-contraparte" class="campo">
+                                        <option value="">— Selecciona una contraparte —</option>
+                                    </select>
+                                </div>
                                 <p>¿Quién conduce este vehículo? Añádelo en la pestaña Conductores y podrás asignarlo aquí.</p>
                                 <div class="botones">
                                     <button type="submit" class="boton">Guardar</button>
@@ -576,6 +595,12 @@
                                     <div class="campomarca"><label><input name="deca-autorizacion-propiedad" type="radio" value="propio" checked> Mía</label></div>
                                     <div class="campomarca"><label><input name="deca-autorizacion-propiedad" type="radio" value="contraparte"> De una contraparte</label></div>
                                 </fieldset>
+                                <div class="campocon">
+                                    <label for="deca-autorizacion-contraparte">Contraparte</label>
+                                    <select id="deca-autorizacion-contraparte" class="campo">
+                                        <option value="">— Selecciona una contraparte —</option>
+                                    </select>
+                                </div>
                                 <div class="botones">
                                     <button type="submit" class="boton">Guardar</button>
                                     <button type="button" id="deca-autorizacion-cancelar" class="boton">Cancelar</button>
